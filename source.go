@@ -39,6 +39,9 @@ func (s *sourceGRPCServer) GetSource(ctx context.Context, req *pb.GetSourceReque
 	return s.Impl.GetSource(ctx, req.Url)
 }
 
+// Check SourceServiceServer implementation
+var _ pb.SourceServiceServer = new(sourceGRPCServer)
+
 type SourcePlugin struct {
 	plugin.NetRPCUnsupportedPlugin
 	Impl Source
