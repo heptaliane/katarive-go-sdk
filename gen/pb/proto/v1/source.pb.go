@@ -127,7 +127,6 @@ func (x *GetSourceResponse) GetNextUrl() string {
 
 type GetSupportedPatternsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -160,13 +159,6 @@ func (x *GetSupportedPatternsRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetSupportedPatternsRequest.ProtoReflect.Descriptor instead.
 func (*GetSupportedPatternsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_v1_source_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetSupportedPatternsRequest) GetUrl() string {
-	if x != nil {
-		return x.Url
-	}
-	return ""
 }
 
 type GetSupportedPatternsResponse struct {
@@ -223,9 +215,8 @@ const file_proto_v1_source_proto_rawDesc = "" +
 	"\x11GetSourceResponse\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x19\n" +
-	"\bnext_url\x18\x03 \x01(\tR\anextUrl\"/\n" +
-	"\x1bGetSupportedPatternsRequest\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\":\n" +
+	"\bnext_url\x18\x03 \x01(\tR\anextUrl\"\x1d\n" +
+	"\x1bGetSupportedPatternsRequest\":\n" +
 	"\x1cGetSupportedPatternsResponse\x12\x1a\n" +
 	"\bpatterns\x18\x01 \x03(\tR\bpatterns2\xbc\x01\n" +
 	"\rSourceService\x12D\n" +
