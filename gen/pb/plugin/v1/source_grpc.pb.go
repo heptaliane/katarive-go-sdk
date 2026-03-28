@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             (unknown)
-// source: proto/v1/source.proto
+// source: plugin/v1/source.proto
 
-package protov1
+package pluginv1
 
 import (
 	context "context"
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SourceService_GetSource_FullMethodName            = "/proto.v1.SourceService/GetSource"
-	SourceService_GetSupportedPatterns_FullMethodName = "/proto.v1.SourceService/GetSupportedPatterns"
+	SourceService_GetSource_FullMethodName            = "/plugin.v1.SourceService/GetSource"
+	SourceService_GetSupportedPatterns_FullMethodName = "/plugin.v1.SourceService/GetSupportedPatterns"
 )
 
 // SourceServiceClient is the client API for SourceService service.
@@ -142,7 +142,7 @@ func _SourceService_GetSupportedPatterns_Handler(srv interface{}, ctx context.Co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SourceService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.v1.SourceService",
+	ServiceName: "plugin.v1.SourceService",
 	HandlerType: (*SourceServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -155,5 +155,5 @@ var SourceService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/v1/source.proto",
+	Metadata: "plugin/v1/source.proto",
 }

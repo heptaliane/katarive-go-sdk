@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/hashicorp/go-plugin"
-	pb "github.com/heptaliane/katarive-go-sdk/gen/pb/proto/v1"
+	pb "github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1"
 	"google.golang.org/grpc"
 )
 

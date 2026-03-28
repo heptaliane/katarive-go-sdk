@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             (unknown)
-// source: proto/v1/speaker.proto
+// source: plugin/v1/speaker.proto
 
-package protov1
+package pluginv1
 
 import (
 	context "context"
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SpeakerService_GetMetadata_FullMethodName = "/proto.v1.SpeakerService/GetMetadata"
-	SpeakerService_Synthesize_FullMethodName  = "/proto.v1.SpeakerService/Synthesize"
+	SpeakerService_GetMetadata_FullMethodName = "/plugin.v1.SpeakerService/GetMetadata"
+	SpeakerService_Synthesize_FullMethodName  = "/plugin.v1.SpeakerService/Synthesize"
 )
 
 // SpeakerServiceClient is the client API for SpeakerService service.
@@ -142,7 +142,7 @@ func _SpeakerService_Synthesize_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SpeakerService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.v1.SpeakerService",
+	ServiceName: "plugin.v1.SpeakerService",
 	HandlerType: (*SpeakerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -155,5 +155,5 @@ var SpeakerService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/v1/speaker.proto",
+	Metadata: "plugin/v1/speaker.proto",
 }

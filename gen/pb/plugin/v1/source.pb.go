@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: proto/v1/source.proto
+// source: plugin/v1/source.proto
 
-package protov1
+package pluginv1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -30,7 +30,7 @@ type GetSourceRequest struct {
 
 func (x *GetSourceRequest) Reset() {
 	*x = GetSourceRequest{}
-	mi := &file_proto_v1_source_proto_msgTypes[0]
+	mi := &file_plugin_v1_source_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +42,7 @@ func (x *GetSourceRequest) String() string {
 func (*GetSourceRequest) ProtoMessage() {}
 
 func (x *GetSourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_v1_source_proto_msgTypes[0]
+	mi := &file_plugin_v1_source_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +55,7 @@ func (x *GetSourceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSourceRequest.ProtoReflect.Descriptor instead.
 func (*GetSourceRequest) Descriptor() ([]byte, []int) {
-	return file_proto_v1_source_proto_rawDescGZIP(), []int{0}
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GetSourceRequest) GetUrl() string {
@@ -76,7 +76,7 @@ type GetSourceResponse struct {
 
 func (x *GetSourceResponse) Reset() {
 	*x = GetSourceResponse{}
-	mi := &file_proto_v1_source_proto_msgTypes[1]
+	mi := &file_plugin_v1_source_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -88,7 +88,7 @@ func (x *GetSourceResponse) String() string {
 func (*GetSourceResponse) ProtoMessage() {}
 
 func (x *GetSourceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_v1_source_proto_msgTypes[1]
+	mi := &file_plugin_v1_source_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -101,7 +101,7 @@ func (x *GetSourceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSourceResponse.ProtoReflect.Descriptor instead.
 func (*GetSourceResponse) Descriptor() ([]byte, []int) {
-	return file_proto_v1_source_proto_rawDescGZIP(), []int{1}
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetSourceResponse) GetTitle() string {
@@ -133,7 +133,7 @@ type GetSupportedPatternsRequest struct {
 
 func (x *GetSupportedPatternsRequest) Reset() {
 	*x = GetSupportedPatternsRequest{}
-	mi := &file_proto_v1_source_proto_msgTypes[2]
+	mi := &file_plugin_v1_source_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -145,7 +145,7 @@ func (x *GetSupportedPatternsRequest) String() string {
 func (*GetSupportedPatternsRequest) ProtoMessage() {}
 
 func (x *GetSupportedPatternsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_v1_source_proto_msgTypes[2]
+	mi := &file_plugin_v1_source_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -158,7 +158,7 @@ func (x *GetSupportedPatternsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSupportedPatternsRequest.ProtoReflect.Descriptor instead.
 func (*GetSupportedPatternsRequest) Descriptor() ([]byte, []int) {
-	return file_proto_v1_source_proto_rawDescGZIP(), []int{2}
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{2}
 }
 
 type GetSupportedPatternsResponse struct {
@@ -170,7 +170,7 @@ type GetSupportedPatternsResponse struct {
 
 func (x *GetSupportedPatternsResponse) Reset() {
 	*x = GetSupportedPatternsResponse{}
-	mi := &file_proto_v1_source_proto_msgTypes[3]
+	mi := &file_plugin_v1_source_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -182,7 +182,7 @@ func (x *GetSupportedPatternsResponse) String() string {
 func (*GetSupportedPatternsResponse) ProtoMessage() {}
 
 func (x *GetSupportedPatternsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_v1_source_proto_msgTypes[3]
+	mi := &file_plugin_v1_source_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -195,7 +195,7 @@ func (x *GetSupportedPatternsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSupportedPatternsResponse.ProtoReflect.Descriptor instead.
 func (*GetSupportedPatternsResponse) Descriptor() ([]byte, []int) {
-	return file_proto_v1_source_proto_rawDescGZIP(), []int{3}
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetSupportedPatternsResponse) GetPatterns() []string {
@@ -205,11 +205,11 @@ func (x *GetSupportedPatternsResponse) GetPatterns() []string {
 	return nil
 }
 
-var File_proto_v1_source_proto protoreflect.FileDescriptor
+var File_plugin_v1_source_proto protoreflect.FileDescriptor
 
-const file_proto_v1_source_proto_rawDesc = "" +
+const file_plugin_v1_source_proto_rawDesc = "" +
 	"\n" +
-	"\x15proto/v1/source.proto\x12\bproto.v1\"$\n" +
+	"\x16plugin/v1/source.proto\x12\tplugin.v1\"$\n" +
 	"\x10GetSourceRequest\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\"^\n" +
 	"\x11GetSourceResponse\x12\x14\n" +
@@ -218,36 +218,37 @@ const file_proto_v1_source_proto_rawDesc = "" +
 	"\bnext_url\x18\x03 \x01(\tR\anextUrl\"\x1d\n" +
 	"\x1bGetSupportedPatternsRequest\":\n" +
 	"\x1cGetSupportedPatternsResponse\x12\x1a\n" +
-	"\bpatterns\x18\x01 \x03(\tR\bpatterns2\xbc\x01\n" +
-	"\rSourceService\x12D\n" +
-	"\tGetSource\x12\x1a.proto.v1.GetSourceRequest\x1a\x1b.proto.v1.GetSourceResponse\x12e\n" +
-	"\x14GetSupportedPatterns\x12%.proto.v1.GetSupportedPatternsRequest\x1a&.proto.v1.GetSupportedPatternsResponseB\x9b\x01\n" +
-	"\fcom.proto.v1B\vSourceProtoP\x01Z=github.com/heptaliane/katarive-go-sdk/gen/pb/proto/v1;protov1\xa2\x02\x03PXX\xaa\x02\bProto.V1\xca\x02\bProto\\V1\xe2\x02\x14Proto\\V1\\GPBMetadata\xea\x02\tProto::V1b\x06proto3"
+	"\bpatterns\x18\x01 \x03(\tR\bpatterns2\xc0\x01\n" +
+	"\rSourceService\x12F\n" +
+	"\tGetSource\x12\x1b.plugin.v1.GetSourceRequest\x1a\x1c.plugin.v1.GetSourceResponse\x12g\n" +
+	"\x14GetSupportedPatterns\x12&.plugin.v1.GetSupportedPatternsRequest\x1a'.plugin.v1.GetSupportedPatternsResponseB\xa2\x01\n" +
+	"\rcom.plugin.v1B\vSourceProtoP\x01Z?github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1;pluginv1\xa2\x02\x03PXX\xaa\x02\tPlugin.V1\xca\x02\tPlugin\\V1\xe2\x02\x15Plugin\\V1\\GPBMetadata\xea\x02\n" +
+	"Plugin::V1b\x06proto3"
 
 var (
-	file_proto_v1_source_proto_rawDescOnce sync.Once
-	file_proto_v1_source_proto_rawDescData []byte
+	file_plugin_v1_source_proto_rawDescOnce sync.Once
+	file_plugin_v1_source_proto_rawDescData []byte
 )
 
-func file_proto_v1_source_proto_rawDescGZIP() []byte {
-	file_proto_v1_source_proto_rawDescOnce.Do(func() {
-		file_proto_v1_source_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_v1_source_proto_rawDesc), len(file_proto_v1_source_proto_rawDesc)))
+func file_plugin_v1_source_proto_rawDescGZIP() []byte {
+	file_plugin_v1_source_proto_rawDescOnce.Do(func() {
+		file_plugin_v1_source_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_plugin_v1_source_proto_rawDesc), len(file_plugin_v1_source_proto_rawDesc)))
 	})
-	return file_proto_v1_source_proto_rawDescData
+	return file_plugin_v1_source_proto_rawDescData
 }
 
-var file_proto_v1_source_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
-var file_proto_v1_source_proto_goTypes = []any{
-	(*GetSourceRequest)(nil),             // 0: proto.v1.GetSourceRequest
-	(*GetSourceResponse)(nil),            // 1: proto.v1.GetSourceResponse
-	(*GetSupportedPatternsRequest)(nil),  // 2: proto.v1.GetSupportedPatternsRequest
-	(*GetSupportedPatternsResponse)(nil), // 3: proto.v1.GetSupportedPatternsResponse
+var file_plugin_v1_source_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_plugin_v1_source_proto_goTypes = []any{
+	(*GetSourceRequest)(nil),             // 0: plugin.v1.GetSourceRequest
+	(*GetSourceResponse)(nil),            // 1: plugin.v1.GetSourceResponse
+	(*GetSupportedPatternsRequest)(nil),  // 2: plugin.v1.GetSupportedPatternsRequest
+	(*GetSupportedPatternsResponse)(nil), // 3: plugin.v1.GetSupportedPatternsResponse
 }
-var file_proto_v1_source_proto_depIdxs = []int32{
-	0, // 0: proto.v1.SourceService.GetSource:input_type -> proto.v1.GetSourceRequest
-	2, // 1: proto.v1.SourceService.GetSupportedPatterns:input_type -> proto.v1.GetSupportedPatternsRequest
-	1, // 2: proto.v1.SourceService.GetSource:output_type -> proto.v1.GetSourceResponse
-	3, // 3: proto.v1.SourceService.GetSupportedPatterns:output_type -> proto.v1.GetSupportedPatternsResponse
+var file_plugin_v1_source_proto_depIdxs = []int32{
+	0, // 0: plugin.v1.SourceService.GetSource:input_type -> plugin.v1.GetSourceRequest
+	2, // 1: plugin.v1.SourceService.GetSupportedPatterns:input_type -> plugin.v1.GetSupportedPatternsRequest
+	1, // 2: plugin.v1.SourceService.GetSource:output_type -> plugin.v1.GetSourceResponse
+	3, // 3: plugin.v1.SourceService.GetSupportedPatterns:output_type -> plugin.v1.GetSupportedPatternsResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -255,26 +256,26 @@ var file_proto_v1_source_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_proto_v1_source_proto_init() }
-func file_proto_v1_source_proto_init() {
-	if File_proto_v1_source_proto != nil {
+func init() { file_plugin_v1_source_proto_init() }
+func file_plugin_v1_source_proto_init() {
+	if File_plugin_v1_source_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_v1_source_proto_rawDesc), len(file_proto_v1_source_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_plugin_v1_source_proto_rawDesc), len(file_plugin_v1_source_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_v1_source_proto_goTypes,
-		DependencyIndexes: file_proto_v1_source_proto_depIdxs,
-		MessageInfos:      file_proto_v1_source_proto_msgTypes,
+		GoTypes:           file_plugin_v1_source_proto_goTypes,
+		DependencyIndexes: file_plugin_v1_source_proto_depIdxs,
+		MessageInfos:      file_plugin_v1_source_proto_msgTypes,
 	}.Build()
-	File_proto_v1_source_proto = out.File
-	file_proto_v1_source_proto_goTypes = nil
-	file_proto_v1_source_proto_depIdxs = nil
+	File_plugin_v1_source_proto = out.File
+	file_plugin_v1_source_proto_goTypes = nil
+	file_plugin_v1_source_proto_depIdxs = nil
 }
