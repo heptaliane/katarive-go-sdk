@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.11
 // 	protoc        (unknown)
-// source: plugin/v1/speaker.proto
+// source: plugin/v1/narrator.proto
 
 package pluginv1
 
@@ -54,11 +54,11 @@ func (x SynthesizeResponse_Status) String() string {
 }
 
 func (SynthesizeResponse_Status) Descriptor() protoreflect.EnumDescriptor {
-	return file_plugin_v1_speaker_proto_enumTypes[0].Descriptor()
+	return file_plugin_v1_narrator_proto_enumTypes[0].Descriptor()
 }
 
 func (SynthesizeResponse_Status) Type() protoreflect.EnumType {
-	return &file_plugin_v1_speaker_proto_enumTypes[0]
+	return &file_plugin_v1_narrator_proto_enumTypes[0]
 }
 
 func (x SynthesizeResponse_Status) Number() protoreflect.EnumNumber {
@@ -67,7 +67,7 @@ func (x SynthesizeResponse_Status) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use SynthesizeResponse_Status.Descriptor instead.
 func (SynthesizeResponse_Status) EnumDescriptor() ([]byte, []int) {
-	return file_plugin_v1_speaker_proto_rawDescGZIP(), []int{4, 0}
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{4, 0}
 }
 
 type GetMetadataRequest struct {
@@ -78,7 +78,7 @@ type GetMetadataRequest struct {
 
 func (x *GetMetadataRequest) Reset() {
 	*x = GetMetadataRequest{}
-	mi := &file_plugin_v1_speaker_proto_msgTypes[0]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -90,7 +90,7 @@ func (x *GetMetadataRequest) String() string {
 func (*GetMetadataRequest) ProtoMessage() {}
 
 func (x *GetMetadataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_speaker_proto_msgTypes[0]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -103,21 +103,21 @@ func (x *GetMetadataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMetadataRequest.ProtoReflect.Descriptor instead.
 func (*GetMetadataRequest) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_speaker_proto_rawDescGZIP(), []int{0}
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{0}
 }
 
 type GetMetadataResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Version       string                 `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	Options       []*SpeakerOption       `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
+	Options       []*NarratorOption      `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetMetadataResponse) Reset() {
 	*x = GetMetadataResponse{}
-	mi := &file_plugin_v1_speaker_proto_msgTypes[1]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -129,7 +129,7 @@ func (x *GetMetadataResponse) String() string {
 func (*GetMetadataResponse) ProtoMessage() {}
 
 func (x *GetMetadataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_speaker_proto_msgTypes[1]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -142,7 +142,7 @@ func (x *GetMetadataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMetadataResponse.ProtoReflect.Descriptor instead.
 func (*GetMetadataResponse) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_speaker_proto_rawDescGZIP(), []int{1}
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetMetadataResponse) GetName() string {
@@ -159,14 +159,14 @@ func (x *GetMetadataResponse) GetVersion() string {
 	return ""
 }
 
-func (x *GetMetadataResponse) GetOptions() []*SpeakerOption {
+func (x *GetMetadataResponse) GetOptions() []*NarratorOption {
 	if x != nil {
 		return x.Options
 	}
 	return nil
 }
 
-type SpeakerOption struct {
+type NarratorOption struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
@@ -175,21 +175,21 @@ type SpeakerOption struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SpeakerOption) Reset() {
-	*x = SpeakerOption{}
-	mi := &file_plugin_v1_speaker_proto_msgTypes[2]
+func (x *NarratorOption) Reset() {
+	*x = NarratorOption{}
+	mi := &file_plugin_v1_narrator_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SpeakerOption) String() string {
+func (x *NarratorOption) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SpeakerOption) ProtoMessage() {}
+func (*NarratorOption) ProtoMessage() {}
 
-func (x *SpeakerOption) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_speaker_proto_msgTypes[2]
+func (x *NarratorOption) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_narrator_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -200,26 +200,26 @@ func (x *SpeakerOption) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SpeakerOption.ProtoReflect.Descriptor instead.
-func (*SpeakerOption) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_speaker_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use NarratorOption.ProtoReflect.Descriptor instead.
+func (*NarratorOption) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *SpeakerOption) GetId() string {
+func (x *NarratorOption) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *SpeakerOption) GetLabel() string {
+func (x *NarratorOption) GetLabel() string {
 	if x != nil {
 		return x.Label
 	}
 	return ""
 }
 
-func (x *SpeakerOption) GetDescription() string {
+func (x *NarratorOption) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
@@ -236,7 +236,7 @@ type SynthesizeRequest struct {
 
 func (x *SynthesizeRequest) Reset() {
 	*x = SynthesizeRequest{}
-	mi := &file_plugin_v1_speaker_proto_msgTypes[3]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -248,7 +248,7 @@ func (x *SynthesizeRequest) String() string {
 func (*SynthesizeRequest) ProtoMessage() {}
 
 func (x *SynthesizeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_speaker_proto_msgTypes[3]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -261,7 +261,7 @@ func (x *SynthesizeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SynthesizeRequest.ProtoReflect.Descriptor instead.
 func (*SynthesizeRequest) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_speaker_proto_rawDescGZIP(), []int{3}
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SynthesizeRequest) GetLines() []string {
@@ -288,7 +288,7 @@ type SynthesizeResponse struct {
 
 func (x *SynthesizeResponse) Reset() {
 	*x = SynthesizeResponse{}
-	mi := &file_plugin_v1_speaker_proto_msgTypes[4]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -300,7 +300,7 @@ func (x *SynthesizeResponse) String() string {
 func (*SynthesizeResponse) ProtoMessage() {}
 
 func (x *SynthesizeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_speaker_proto_msgTypes[4]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -313,7 +313,7 @@ func (x *SynthesizeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SynthesizeResponse.ProtoReflect.Descriptor instead.
 func (*SynthesizeResponse) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_speaker_proto_rawDescGZIP(), []int{4}
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SynthesizeResponse) GetStatus() SynthesizeResponse_Status {
@@ -330,17 +330,17 @@ func (x *SynthesizeResponse) GetPath() string {
 	return ""
 }
 
-var File_plugin_v1_speaker_proto protoreflect.FileDescriptor
+var File_plugin_v1_narrator_proto protoreflect.FileDescriptor
 
-const file_plugin_v1_speaker_proto_rawDesc = "" +
+const file_plugin_v1_narrator_proto_rawDesc = "" +
 	"\n" +
-	"\x17plugin/v1/speaker.proto\x12\tplugin.v1\"\x14\n" +
-	"\x12GetMetadataRequest\"w\n" +
+	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\"\x14\n" +
+	"\x12GetMetadataRequest\"x\n" +
 	"\x13GetMetadataResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
-	"\aversion\x18\x02 \x01(\tR\aversion\x122\n" +
-	"\aoptions\x18\x03 \x03(\v2\x18.plugin.v1.SpeakerOptionR\aoptions\"W\n" +
-	"\rSpeakerOption\x12\x0e\n" +
+	"\aversion\x18\x02 \x01(\tR\aversion\x123\n" +
+	"\aoptions\x18\x03 \x03(\v2\x19.plugin.v1.NarratorOptionR\aoptions\"X\n" +
+	"\x0eNarratorOption\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xaa\x01\n" +
@@ -356,45 +356,45 @@ const file_plugin_v1_speaker_proto_rawDesc = "" +
 	"\x06Status\x12\x16\n" +
 	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eSTATUS_SUCCESS\x10\x01\x12\x11\n" +
-	"\rSTATUS_FAILED\x10\x022\xa9\x01\n" +
-	"\x0eSpeakerService\x12L\n" +
+	"\rSTATUS_FAILED\x10\x022\xaa\x01\n" +
+	"\x0fNarratorService\x12L\n" +
 	"\vGetMetadata\x12\x1d.plugin.v1.GetMetadataRequest\x1a\x1e.plugin.v1.GetMetadataResponse\x12I\n" +
 	"\n" +
-	"Synthesize\x12\x1c.plugin.v1.SynthesizeRequest\x1a\x1d.plugin.v1.SynthesizeResponseB\xa3\x01\n" +
-	"\rcom.plugin.v1B\fSpeakerProtoP\x01Z?github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1;pluginv1\xa2\x02\x03PXX\xaa\x02\tPlugin.V1\xca\x02\tPlugin\\V1\xe2\x02\x15Plugin\\V1\\GPBMetadata\xea\x02\n" +
+	"Synthesize\x12\x1c.plugin.v1.SynthesizeRequest\x1a\x1d.plugin.v1.SynthesizeResponseB\xa4\x01\n" +
+	"\rcom.plugin.v1B\rNarratorProtoP\x01Z?github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1;pluginv1\xa2\x02\x03PXX\xaa\x02\tPlugin.V1\xca\x02\tPlugin\\V1\xe2\x02\x15Plugin\\V1\\GPBMetadata\xea\x02\n" +
 	"Plugin::V1b\x06proto3"
 
 var (
-	file_plugin_v1_speaker_proto_rawDescOnce sync.Once
-	file_plugin_v1_speaker_proto_rawDescData []byte
+	file_plugin_v1_narrator_proto_rawDescOnce sync.Once
+	file_plugin_v1_narrator_proto_rawDescData []byte
 )
 
-func file_plugin_v1_speaker_proto_rawDescGZIP() []byte {
-	file_plugin_v1_speaker_proto_rawDescOnce.Do(func() {
-		file_plugin_v1_speaker_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_plugin_v1_speaker_proto_rawDesc), len(file_plugin_v1_speaker_proto_rawDesc)))
+func file_plugin_v1_narrator_proto_rawDescGZIP() []byte {
+	file_plugin_v1_narrator_proto_rawDescOnce.Do(func() {
+		file_plugin_v1_narrator_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_plugin_v1_narrator_proto_rawDesc), len(file_plugin_v1_narrator_proto_rawDesc)))
 	})
-	return file_plugin_v1_speaker_proto_rawDescData
+	return file_plugin_v1_narrator_proto_rawDescData
 }
 
-var file_plugin_v1_speaker_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_plugin_v1_speaker_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_plugin_v1_speaker_proto_goTypes = []any{
+var file_plugin_v1_narrator_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_plugin_v1_narrator_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_plugin_v1_narrator_proto_goTypes = []any{
 	(SynthesizeResponse_Status)(0), // 0: plugin.v1.SynthesizeResponse.Status
 	(*GetMetadataRequest)(nil),     // 1: plugin.v1.GetMetadataRequest
 	(*GetMetadataResponse)(nil),    // 2: plugin.v1.GetMetadataResponse
-	(*SpeakerOption)(nil),          // 3: plugin.v1.SpeakerOption
+	(*NarratorOption)(nil),         // 3: plugin.v1.NarratorOption
 	(*SynthesizeRequest)(nil),      // 4: plugin.v1.SynthesizeRequest
 	(*SynthesizeResponse)(nil),     // 5: plugin.v1.SynthesizeResponse
 	nil,                            // 6: plugin.v1.SynthesizeRequest.OptionsEntry
 }
-var file_plugin_v1_speaker_proto_depIdxs = []int32{
-	3, // 0: plugin.v1.GetMetadataResponse.options:type_name -> plugin.v1.SpeakerOption
+var file_plugin_v1_narrator_proto_depIdxs = []int32{
+	3, // 0: plugin.v1.GetMetadataResponse.options:type_name -> plugin.v1.NarratorOption
 	6, // 1: plugin.v1.SynthesizeRequest.options:type_name -> plugin.v1.SynthesizeRequest.OptionsEntry
 	0, // 2: plugin.v1.SynthesizeResponse.status:type_name -> plugin.v1.SynthesizeResponse.Status
-	1, // 3: plugin.v1.SpeakerService.GetMetadata:input_type -> plugin.v1.GetMetadataRequest
-	4, // 4: plugin.v1.SpeakerService.Synthesize:input_type -> plugin.v1.SynthesizeRequest
-	2, // 5: plugin.v1.SpeakerService.GetMetadata:output_type -> plugin.v1.GetMetadataResponse
-	5, // 6: plugin.v1.SpeakerService.Synthesize:output_type -> plugin.v1.SynthesizeResponse
+	1, // 3: plugin.v1.NarratorService.GetMetadata:input_type -> plugin.v1.GetMetadataRequest
+	4, // 4: plugin.v1.NarratorService.Synthesize:input_type -> plugin.v1.SynthesizeRequest
+	2, // 5: plugin.v1.NarratorService.GetMetadata:output_type -> plugin.v1.GetMetadataResponse
+	5, // 6: plugin.v1.NarratorService.Synthesize:output_type -> plugin.v1.SynthesizeResponse
 	5, // [5:7] is the sub-list for method output_type
 	3, // [3:5] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -402,27 +402,27 @@ var file_plugin_v1_speaker_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_plugin_v1_speaker_proto_init() }
-func file_plugin_v1_speaker_proto_init() {
-	if File_plugin_v1_speaker_proto != nil {
+func init() { file_plugin_v1_narrator_proto_init() }
+func file_plugin_v1_narrator_proto_init() {
+	if File_plugin_v1_narrator_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_plugin_v1_speaker_proto_rawDesc), len(file_plugin_v1_speaker_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_plugin_v1_narrator_proto_rawDesc), len(file_plugin_v1_narrator_proto_rawDesc)),
 			NumEnums:      1,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_plugin_v1_speaker_proto_goTypes,
-		DependencyIndexes: file_plugin_v1_speaker_proto_depIdxs,
-		EnumInfos:         file_plugin_v1_speaker_proto_enumTypes,
-		MessageInfos:      file_plugin_v1_speaker_proto_msgTypes,
+		GoTypes:           file_plugin_v1_narrator_proto_goTypes,
+		DependencyIndexes: file_plugin_v1_narrator_proto_depIdxs,
+		EnumInfos:         file_plugin_v1_narrator_proto_enumTypes,
+		MessageInfos:      file_plugin_v1_narrator_proto_msgTypes,
 	}.Build()
-	File_plugin_v1_speaker_proto = out.File
-	file_plugin_v1_speaker_proto_goTypes = nil
-	file_plugin_v1_speaker_proto_depIdxs = nil
+	File_plugin_v1_narrator_proto = out.File
+	file_plugin_v1_narrator_proto_goTypes = nil
+	file_plugin_v1_narrator_proto_depIdxs = nil
 }

@@ -8,13 +8,13 @@ import (
 	"google.golang.org/grpc"
 )
 
-type Speaker interface {
+type Narrator interface {
 	GetMetadata(ctx context.Context) (*pb.GetMetadataResponse, error)
 	Synthesize(ctx context.Context, lines []string, options map[string]string) (*pb.SynthesizeResponse, error)
 }
 
 type speakerGRPCClient struct {
-	client pb.SpeakerServiceClient
+	client pb.NarratorServiceClient
 }
 
 func (c *speakerGRPCClient) GetMetadata(ctx context.Context) (*pb.GetMetadataResponse, error) {
@@ -27,12 +27,12 @@ func (c *speakerGRPCClient) Synthesize(ctx context.Context, lines []string, opti
 	})
 }
 
-// Check Speaker implementation
-var _ Speaker = new(speakerGRPCClient)
+// Check Narrator implementation
+var _ Narrator = new(speakerGRPCClient)
 
 type speakerGRPCServer struct {
-	pb.UnimplementedSpeakerServiceServer
-	Impl Speaker
+	pb.UnimplementedNarratorServiceServer
+	Impl Narrator
 }
 
 func (s *speakerGRPCServer) GetMetadata(ctx context.Context, _req *pb.GetMetadataRequest) (*pb.GetMetadataResponse, error) {
@@ -42,21 +42,21 @@ func (s *speakerGRPCServer) Synthesize(ctx context.Context, req *pb.SynthesizeRe
 	return s.Impl.Synthesize(ctx, req.Lines, req.Options)
 }
 
-// Check SpeakerServiceServer implementation
-var _ pb.SpeakerServiceServer = new(speakerGRPCServer)
+// Check NarratorServiceServer implementation
+var _ pb.NarratorServiceServer = new(speakerGRPCServer)
 
-type SpeakerPlugin struct {
+type NarratorPlugin struct {
 	plugin.NetRPCUnsupportedPlugin
-	Impl Speaker
+	Impl Narrator
 }
 
-func (p *SpeakerPlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Server) error {
-	pb.RegisterSpeakerServiceServer(server, &speakerGRPCServer{Impl: p.Impl})
+func (p *NarratorPlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Server) error {
+	pb.RegisterNarratorServiceServer(server, &speakerGRPCServer{Impl: p.Impl})
 	return nil
 }
-func (p *SpeakerPlugin) GRPCClient(ctx context.Context, broker *plugin.GRPCBroker, conn *grpc.ClientConn) (interface{}, error) {
-	return &speakerGRPCClient{client: pb.NewSpeakerServiceClient(conn)}, nil
+func (p *NarratorPlugin) GRPCClient(ctx context.Context, broker *plugin.GRPCBroker, conn *grpc.ClientConn) (interface{}, error) {
+	return &speakerGRPCClient{client: pb.NewNarratorServiceClient(conn)}, nil
 }
 
 // Check plugin.GRPCPlugin implementation
-var _ plugin.GRPCPlugin = new(SpeakerPlugin)
+var _ plugin.GRPCPlugin = new(NarratorPlugin)
