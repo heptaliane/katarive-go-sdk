@@ -10,7 +10,8 @@ import (
 
 type Narrator interface {
 	GetMetadata(ctx context.Context) (*pb.GetMetadataResponse, error)
-	Synthesize(ctx context.Context, lines []string, options map[string]string) (*pb.SynthesizeResponse, error)
+	Narrate(ctx context.Context, lines []string, options map[string]string) (*pb.NarrateResponse, error)
+	JobStatus(ctx context.Context, jobId string) (*pb.JobStatusResponse, error)
 }
 
 type speakerGRPCClient struct {
@@ -20,10 +21,15 @@ type speakerGRPCClient struct {
 func (c *speakerGRPCClient) GetMetadata(ctx context.Context) (*pb.GetMetadataResponse, error) {
 	return c.client.GetMetadata(ctx, &pb.GetMetadataRequest{})
 }
-func (c *speakerGRPCClient) Synthesize(ctx context.Context, lines []string, options map[string]string) (*pb.SynthesizeResponse, error) {
-	return c.client.Synthesize(ctx, &pb.SynthesizeRequest{
+func (c *speakerGRPCClient) Narrate(ctx context.Context, lines []string, options map[string]string) (*pb.NarrateResponse, error) {
+	return c.client.Narrate(ctx, &pb.NarrateRequest{
 		Lines:   lines,
 		Options: options,
+	})
+}
+func (c *speakerGRPCClient) JobStatus(ctx context.Context, jobId string) (*pb.JobStatusResponse, error) {
+	return c.client.JobStatus(ctx, &pb.JobStatusRequest{
+		JobId: jobId,
 	})
 }
 
@@ -38,8 +44,11 @@ type speakerGRPCServer struct {
 func (s *speakerGRPCServer) GetMetadata(ctx context.Context, _req *pb.GetMetadataRequest) (*pb.GetMetadataResponse, error) {
 	return s.Impl.GetMetadata(ctx)
 }
-func (s *speakerGRPCServer) Synthesize(ctx context.Context, req *pb.SynthesizeRequest) (*pb.SynthesizeResponse, error) {
-	return s.Impl.Synthesize(ctx, req.Lines, req.Options)
+func (s *speakerGRPCServer) Narrate(ctx context.Context, req *pb.NarrateRequest) (*pb.NarrateResponse, error) {
+	return s.Impl.Narrate(ctx, req.Lines, req.Options)
+}
+func (s *speakerGRPCServer) JobStatus(ctx context.Context, req *pb.JobStatusRequest) (*pb.JobStatusResponse, error) {
+	return s.Impl.JobStatus(ctx, req.JobId)
 }
 
 // Check NarratorServiceServer implementation

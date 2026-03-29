@@ -20,7 +20,8 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	NarratorService_GetMetadata_FullMethodName = "/plugin.v1.NarratorService/GetMetadata"
-	NarratorService_Synthesize_FullMethodName  = "/plugin.v1.NarratorService/Synthesize"
+	NarratorService_Narrate_FullMethodName     = "/plugin.v1.NarratorService/Narrate"
+	NarratorService_JobStatus_FullMethodName   = "/plugin.v1.NarratorService/JobStatus"
 )
 
 // NarratorServiceClient is the client API for NarratorService service.
@@ -28,7 +29,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NarratorServiceClient interface {
 	GetMetadata(ctx context.Context, in *GetMetadataRequest, opts ...grpc.CallOption) (*GetMetadataResponse, error)
-	Synthesize(ctx context.Context, in *SynthesizeRequest, opts ...grpc.CallOption) (*SynthesizeResponse, error)
+	Narrate(ctx context.Context, in *NarrateRequest, opts ...grpc.CallOption) (*NarrateResponse, error)
+	JobStatus(ctx context.Context, in *JobStatusRequest, opts ...grpc.CallOption) (*JobStatusResponse, error)
 }
 
 type narratorServiceClient struct {
@@ -49,10 +51,20 @@ func (c *narratorServiceClient) GetMetadata(ctx context.Context, in *GetMetadata
 	return out, nil
 }
 
-func (c *narratorServiceClient) Synthesize(ctx context.Context, in *SynthesizeRequest, opts ...grpc.CallOption) (*SynthesizeResponse, error) {
+func (c *narratorServiceClient) Narrate(ctx context.Context, in *NarrateRequest, opts ...grpc.CallOption) (*NarrateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SynthesizeResponse)
-	err := c.cc.Invoke(ctx, NarratorService_Synthesize_FullMethodName, in, out, cOpts...)
+	out := new(NarrateResponse)
+	err := c.cc.Invoke(ctx, NarratorService_Narrate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *narratorServiceClient) JobStatus(ctx context.Context, in *JobStatusRequest, opts ...grpc.CallOption) (*JobStatusResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JobStatusResponse)
+	err := c.cc.Invoke(ctx, NarratorService_JobStatus_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +76,8 @@ func (c *narratorServiceClient) Synthesize(ctx context.Context, in *SynthesizeRe
 // for forward compatibility.
 type NarratorServiceServer interface {
 	GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error)
-	Synthesize(context.Context, *SynthesizeRequest) (*SynthesizeResponse, error)
+	Narrate(context.Context, *NarrateRequest) (*NarrateResponse, error)
+	JobStatus(context.Context, *JobStatusRequest) (*JobStatusResponse, error)
 	mustEmbedUnimplementedNarratorServiceServer()
 }
 
@@ -78,8 +91,11 @@ type UnimplementedNarratorServiceServer struct{}
 func (UnimplementedNarratorServiceServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetMetadata not implemented")
 }
-func (UnimplementedNarratorServiceServer) Synthesize(context.Context, *SynthesizeRequest) (*SynthesizeResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Synthesize not implemented")
+func (UnimplementedNarratorServiceServer) Narrate(context.Context, *NarrateRequest) (*NarrateResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Narrate not implemented")
+}
+func (UnimplementedNarratorServiceServer) JobStatus(context.Context, *JobStatusRequest) (*JobStatusResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method JobStatus not implemented")
 }
 func (UnimplementedNarratorServiceServer) mustEmbedUnimplementedNarratorServiceServer() {}
 func (UnimplementedNarratorServiceServer) testEmbeddedByValue()                         {}
@@ -120,20 +136,38 @@ func _NarratorService_GetMetadata_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NarratorService_Synthesize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SynthesizeRequest)
+func _NarratorService_Narrate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NarrateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(NarratorServiceServer).Synthesize(ctx, in)
+		return srv.(NarratorServiceServer).Narrate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: NarratorService_Synthesize_FullMethodName,
+		FullMethod: NarratorService_Narrate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NarratorServiceServer).Synthesize(ctx, req.(*SynthesizeRequest))
+		return srv.(NarratorServiceServer).Narrate(ctx, req.(*NarrateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NarratorService_JobStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JobStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NarratorServiceServer).JobStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NarratorService_JobStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NarratorServiceServer).JobStatus(ctx, req.(*JobStatusRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -150,8 +184,12 @@ var NarratorService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _NarratorService_GetMetadata_Handler,
 		},
 		{
-			MethodName: "Synthesize",
-			Handler:    _NarratorService_Synthesize_Handler,
+			MethodName: "Narrate",
+			Handler:    _NarratorService_Narrate_Handler,
+		},
+		{
+			MethodName: "JobStatus",
+			Handler:    _NarratorService_JobStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
