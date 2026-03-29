@@ -14,45 +14,45 @@ type Narrator interface {
 	JobStatus(ctx context.Context, jobId string) (*pb.JobStatusResponse, error)
 }
 
-type speakerGRPCClient struct {
+type narratorGRPCClient struct {
 	client pb.NarratorServiceClient
 }
 
-func (c *speakerGRPCClient) GetMetadata(ctx context.Context) (*pb.GetMetadataResponse, error) {
+func (c *narratorGRPCClient) GetMetadata(ctx context.Context) (*pb.GetMetadataResponse, error) {
 	return c.client.GetMetadata(ctx, &pb.GetMetadataRequest{})
 }
-func (c *speakerGRPCClient) Narrate(ctx context.Context, lines []string, options map[string]string) (*pb.NarrateResponse, error) {
+func (c *narratorGRPCClient) Narrate(ctx context.Context, lines []string, options map[string]string) (*pb.NarrateResponse, error) {
 	return c.client.Narrate(ctx, &pb.NarrateRequest{
 		Lines:   lines,
 		Options: options,
 	})
 }
-func (c *speakerGRPCClient) JobStatus(ctx context.Context, jobId string) (*pb.JobStatusResponse, error) {
+func (c *narratorGRPCClient) JobStatus(ctx context.Context, jobId string) (*pb.JobStatusResponse, error) {
 	return c.client.JobStatus(ctx, &pb.JobStatusRequest{
 		JobId: jobId,
 	})
 }
 
 // Check Narrator implementation
-var _ Narrator = new(speakerGRPCClient)
+var _ Narrator = new(narratorGRPCClient)
 
-type speakerGRPCServer struct {
+type narratorGRPCServer struct {
 	pb.UnimplementedNarratorServiceServer
 	Impl Narrator
 }
 
-func (s *speakerGRPCServer) GetMetadata(ctx context.Context, _req *pb.GetMetadataRequest) (*pb.GetMetadataResponse, error) {
+func (s *narratorGRPCServer) GetMetadata(ctx context.Context, _req *pb.GetMetadataRequest) (*pb.GetMetadataResponse, error) {
 	return s.Impl.GetMetadata(ctx)
 }
-func (s *speakerGRPCServer) Narrate(ctx context.Context, req *pb.NarrateRequest) (*pb.NarrateResponse, error) {
+func (s *narratorGRPCServer) Narrate(ctx context.Context, req *pb.NarrateRequest) (*pb.NarrateResponse, error) {
 	return s.Impl.Narrate(ctx, req.Lines, req.Options)
 }
-func (s *speakerGRPCServer) JobStatus(ctx context.Context, req *pb.JobStatusRequest) (*pb.JobStatusResponse, error) {
+func (s *narratorGRPCServer) JobStatus(ctx context.Context, req *pb.JobStatusRequest) (*pb.JobStatusResponse, error) {
 	return s.Impl.JobStatus(ctx, req.JobId)
 }
 
 // Check NarratorServiceServer implementation
-var _ pb.NarratorServiceServer = new(speakerGRPCServer)
+var _ pb.NarratorServiceServer = new(narratorGRPCServer)
 
 type NarratorPlugin struct {
 	plugin.NetRPCUnsupportedPlugin
@@ -60,11 +60,11 @@ type NarratorPlugin struct {
 }
 
 func (p *NarratorPlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Server) error {
-	pb.RegisterNarratorServiceServer(server, &speakerGRPCServer{Impl: p.Impl})
+	pb.RegisterNarratorServiceServer(server, &narratorGRPCServer{Impl: p.Impl})
 	return nil
 }
 func (p *NarratorPlugin) GRPCClient(ctx context.Context, broker *plugin.GRPCBroker, conn *grpc.ClientConn) (interface{}, error) {
-	return &speakerGRPCClient{client: pb.NewNarratorServiceClient(conn)}, nil
+	return &narratorGRPCClient{client: pb.NewNarratorServiceClient(conn)}, nil
 }
 
 // Check plugin.GRPCPlugin implementation
