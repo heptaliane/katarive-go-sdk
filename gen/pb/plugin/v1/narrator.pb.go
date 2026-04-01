@@ -231,8 +231,9 @@ func (x *NarratorOption) GetDescription() string {
 
 type NarrateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Lines         []string               `protobuf:"bytes,1,rep,name=lines,proto3" json:"lines,omitempty"`
-	Options       map[string]string      `protobuf:"bytes,2,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	Lines         []string               `protobuf:"bytes,2,rep,name=lines,proto3" json:"lines,omitempty"`
+	Options       map[string]string      `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -267,6 +268,13 @@ func (*NarrateRequest) Descriptor() ([]byte, []int) {
 	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{3}
 }
 
+func (x *NarrateRequest) GetPath() string {
+	if x != nil {
+		return x.Path
+	}
+	return ""
+}
+
 func (x *NarrateRequest) GetLines() []string {
 	if x != nil {
 		return x.Lines
@@ -284,7 +292,6 @@ func (x *NarrateRequest) GetOptions() map[string]string {
 type NarrateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	Path          string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -322,13 +329,6 @@ func (*NarrateResponse) Descriptor() ([]byte, []int) {
 func (x *NarrateResponse) GetJobId() string {
 	if x != nil {
 		return x.JobId
-	}
-	return ""
-}
-
-func (x *NarrateResponse) GetPath() string {
-	if x != nil {
-		return x.Path
 	}
 	return ""
 }
@@ -434,16 +434,16 @@ const file_plugin_v1_narrator_proto_rawDesc = "" +
 	"\x0eNarratorOption\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xa4\x01\n" +
-	"\x0eNarrateRequest\x12\x14\n" +
-	"\x05lines\x18\x01 \x03(\tR\x05lines\x12@\n" +
-	"\aoptions\x18\x02 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xb8\x01\n" +
+	"\x0eNarrateRequest\x12\x12\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\x12\x14\n" +
+	"\x05lines\x18\x02 \x03(\tR\x05lines\x12@\n" +
+	"\aoptions\x18\x03 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"<\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"(\n" +
 	"\x0fNarrateResponse\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\x12\x12\n" +
-	"\x04path\x18\x02 \x01(\tR\x04path\")\n" +
+	"\x06job_id\x18\x01 \x01(\tR\x05jobId\")\n" +
 	"\x10JobStatusRequest\x12\x15\n" +
 	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\xb1\x01\n" +
 	"\x11JobStatusResponse\x12;\n" +
