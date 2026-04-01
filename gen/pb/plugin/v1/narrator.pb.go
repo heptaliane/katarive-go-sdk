@@ -21,24 +21,24 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type JobStatusResponse_Status int32
+type NarrateResponse_Status int32
 
 const (
-	JobStatusResponse_STATUS_UNSPECIFIED JobStatusResponse_Status = 0
-	JobStatusResponse_STATUS_PROGRESSING JobStatusResponse_Status = 1
-	JobStatusResponse_STATUS_SUCCESS     JobStatusResponse_Status = 2
-	JobStatusResponse_STATUS_FAILED      JobStatusResponse_Status = 3
+	NarrateResponse_STATUS_UNSPECIFIED NarrateResponse_Status = 0
+	NarrateResponse_STATUS_PROGRESSING NarrateResponse_Status = 1
+	NarrateResponse_STATUS_SUCCESS     NarrateResponse_Status = 2
+	NarrateResponse_STATUS_FAILED      NarrateResponse_Status = 3
 )
 
-// Enum value maps for JobStatusResponse_Status.
+// Enum value maps for NarrateResponse_Status.
 var (
-	JobStatusResponse_Status_name = map[int32]string{
+	NarrateResponse_Status_name = map[int32]string{
 		0: "STATUS_UNSPECIFIED",
 		1: "STATUS_PROGRESSING",
 		2: "STATUS_SUCCESS",
 		3: "STATUS_FAILED",
 	}
-	JobStatusResponse_Status_value = map[string]int32{
+	NarrateResponse_Status_value = map[string]int32{
 		"STATUS_UNSPECIFIED": 0,
 		"STATUS_PROGRESSING": 1,
 		"STATUS_SUCCESS":     2,
@@ -46,31 +46,31 @@ var (
 	}
 )
 
-func (x JobStatusResponse_Status) Enum() *JobStatusResponse_Status {
-	p := new(JobStatusResponse_Status)
+func (x NarrateResponse_Status) Enum() *NarrateResponse_Status {
+	p := new(NarrateResponse_Status)
 	*p = x
 	return p
 }
 
-func (x JobStatusResponse_Status) String() string {
+func (x NarrateResponse_Status) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (JobStatusResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+func (NarrateResponse_Status) Descriptor() protoreflect.EnumDescriptor {
 	return file_plugin_v1_narrator_proto_enumTypes[0].Descriptor()
 }
 
-func (JobStatusResponse_Status) Type() protoreflect.EnumType {
+func (NarrateResponse_Status) Type() protoreflect.EnumType {
 	return &file_plugin_v1_narrator_proto_enumTypes[0]
 }
 
-func (x JobStatusResponse_Status) Number() protoreflect.EnumNumber {
+func (x NarrateResponse_Status) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use JobStatusResponse_Status.Descriptor instead.
-func (JobStatusResponse_Status) EnumDescriptor() ([]byte, []int) {
-	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{6, 0}
+// Deprecated: Use NarrateResponse_Status.Descriptor instead.
+func (NarrateResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{4, 0}
 }
 
 type GetMetadataRequest struct {
@@ -291,7 +291,7 @@ func (x *NarrateRequest) GetOptions() map[string]string {
 
 type NarrateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
+	Status        NarrateResponse_Status `protobuf:"varint,1,opt,name=status,proto3,enum=plugin.v1.NarrateResponse_Status" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -326,99 +326,11 @@ func (*NarrateResponse) Descriptor() ([]byte, []int) {
 	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *NarrateResponse) GetJobId() string {
-	if x != nil {
-		return x.JobId
-	}
-	return ""
-}
-
-type JobStatusRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	JobId         string                 `protobuf:"bytes,1,opt,name=job_id,json=jobId,proto3" json:"job_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *JobStatusRequest) Reset() {
-	*x = JobStatusRequest{}
-	mi := &file_plugin_v1_narrator_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *JobStatusRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*JobStatusRequest) ProtoMessage() {}
-
-func (x *JobStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_narrator_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use JobStatusRequest.ProtoReflect.Descriptor instead.
-func (*JobStatusRequest) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *JobStatusRequest) GetJobId() string {
-	if x != nil {
-		return x.JobId
-	}
-	return ""
-}
-
-type JobStatusResponse struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	Status        JobStatusResponse_Status `protobuf:"varint,1,opt,name=status,proto3,enum=plugin.v1.JobStatusResponse_Status" json:"status,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *JobStatusResponse) Reset() {
-	*x = JobStatusResponse{}
-	mi := &file_plugin_v1_narrator_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *JobStatusResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*JobStatusResponse) ProtoMessage() {}
-
-func (x *JobStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_narrator_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use JobStatusResponse.ProtoReflect.Descriptor instead.
-func (*JobStatusResponse) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *JobStatusResponse) GetStatus() JobStatusResponse_Status {
+func (x *NarrateResponse) GetStatus() NarrateResponse_Status {
 	if x != nil {
 		return x.Status
 	}
-	return JobStatusResponse_STATUS_UNSPECIFIED
+	return NarrateResponse_STATUS_UNSPECIFIED
 }
 
 var File_plugin_v1_narrator_proto protoreflect.FileDescriptor
@@ -441,22 +353,17 @@ const file_plugin_v1_narrator_proto_rawDesc = "" +
 	"\aoptions\x18\x03 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"(\n" +
-	"\x0fNarrateResponse\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\")\n" +
-	"\x10JobStatusRequest\x12\x15\n" +
-	"\x06job_id\x18\x01 \x01(\tR\x05jobId\"\xb1\x01\n" +
-	"\x11JobStatusResponse\x12;\n" +
-	"\x06status\x18\x01 \x01(\x0e2#.plugin.v1.JobStatusResponse.StatusR\x06status\"_\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xad\x01\n" +
+	"\x0fNarrateResponse\x129\n" +
+	"\x06status\x18\x01 \x01(\x0e2!.plugin.v1.NarrateResponse.StatusR\x06status\"_\n" +
 	"\x06Status\x12\x16\n" +
 	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12STATUS_PROGRESSING\x10\x01\x12\x12\n" +
 	"\x0eSTATUS_SUCCESS\x10\x02\x12\x11\n" +
-	"\rSTATUS_FAILED\x10\x032\xe9\x01\n" +
+	"\rSTATUS_FAILED\x10\x032\xa1\x01\n" +
 	"\x0fNarratorService\x12L\n" +
 	"\vGetMetadata\x12\x1d.plugin.v1.GetMetadataRequest\x1a\x1e.plugin.v1.GetMetadataResponse\x12@\n" +
-	"\aNarrate\x12\x19.plugin.v1.NarrateRequest\x1a\x1a.plugin.v1.NarrateResponse\x12F\n" +
-	"\tJobStatus\x12\x1b.plugin.v1.JobStatusRequest\x1a\x1c.plugin.v1.JobStatusResponseB\xa4\x01\n" +
+	"\aNarrate\x12\x19.plugin.v1.NarrateRequest\x1a\x1a.plugin.v1.NarrateResponseB\xa4\x01\n" +
 	"\rcom.plugin.v1B\rNarratorProtoP\x01Z?github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1;pluginv1\xa2\x02\x03PXX\xaa\x02\tPlugin.V1\xca\x02\tPlugin\\V1\xe2\x02\x15Plugin\\V1\\GPBMetadata\xea\x02\n" +
 	"Plugin::V1b\x06proto3"
 
@@ -473,30 +380,26 @@ func file_plugin_v1_narrator_proto_rawDescGZIP() []byte {
 }
 
 var file_plugin_v1_narrator_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_plugin_v1_narrator_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_plugin_v1_narrator_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_plugin_v1_narrator_proto_goTypes = []any{
-	(JobStatusResponse_Status)(0), // 0: plugin.v1.JobStatusResponse.Status
-	(*GetMetadataRequest)(nil),    // 1: plugin.v1.GetMetadataRequest
-	(*GetMetadataResponse)(nil),   // 2: plugin.v1.GetMetadataResponse
-	(*NarratorOption)(nil),        // 3: plugin.v1.NarratorOption
-	(*NarrateRequest)(nil),        // 4: plugin.v1.NarrateRequest
-	(*NarrateResponse)(nil),       // 5: plugin.v1.NarrateResponse
-	(*JobStatusRequest)(nil),      // 6: plugin.v1.JobStatusRequest
-	(*JobStatusResponse)(nil),     // 7: plugin.v1.JobStatusResponse
-	nil,                           // 8: plugin.v1.NarrateRequest.OptionsEntry
+	(NarrateResponse_Status)(0), // 0: plugin.v1.NarrateResponse.Status
+	(*GetMetadataRequest)(nil),  // 1: plugin.v1.GetMetadataRequest
+	(*GetMetadataResponse)(nil), // 2: plugin.v1.GetMetadataResponse
+	(*NarratorOption)(nil),      // 3: plugin.v1.NarratorOption
+	(*NarrateRequest)(nil),      // 4: plugin.v1.NarrateRequest
+	(*NarrateResponse)(nil),     // 5: plugin.v1.NarrateResponse
+	nil,                         // 6: plugin.v1.NarrateRequest.OptionsEntry
 }
 var file_plugin_v1_narrator_proto_depIdxs = []int32{
 	3, // 0: plugin.v1.GetMetadataResponse.options:type_name -> plugin.v1.NarratorOption
-	8, // 1: plugin.v1.NarrateRequest.options:type_name -> plugin.v1.NarrateRequest.OptionsEntry
-	0, // 2: plugin.v1.JobStatusResponse.status:type_name -> plugin.v1.JobStatusResponse.Status
+	6, // 1: plugin.v1.NarrateRequest.options:type_name -> plugin.v1.NarrateRequest.OptionsEntry
+	0, // 2: plugin.v1.NarrateResponse.status:type_name -> plugin.v1.NarrateResponse.Status
 	1, // 3: plugin.v1.NarratorService.GetMetadata:input_type -> plugin.v1.GetMetadataRequest
 	4, // 4: plugin.v1.NarratorService.Narrate:input_type -> plugin.v1.NarrateRequest
-	6, // 5: plugin.v1.NarratorService.JobStatus:input_type -> plugin.v1.JobStatusRequest
-	2, // 6: plugin.v1.NarratorService.GetMetadata:output_type -> plugin.v1.GetMetadataResponse
-	5, // 7: plugin.v1.NarratorService.Narrate:output_type -> plugin.v1.NarrateResponse
-	7, // 8: plugin.v1.NarratorService.JobStatus:output_type -> plugin.v1.JobStatusResponse
-	6, // [6:9] is the sub-list for method output_type
-	3, // [3:6] is the sub-list for method input_type
+	2, // 5: plugin.v1.NarratorService.GetMetadata:output_type -> plugin.v1.GetMetadataResponse
+	5, // 6: plugin.v1.NarratorService.Narrate:output_type -> plugin.v1.NarrateResponse
+	5, // [5:7] is the sub-list for method output_type
+	3, // [3:5] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -513,7 +416,7 @@ func file_plugin_v1_narrator_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_plugin_v1_narrator_proto_rawDesc), len(file_plugin_v1_narrator_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   8,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

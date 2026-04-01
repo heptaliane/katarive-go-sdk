@@ -21,7 +21,6 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	NarratorService_GetMetadata_FullMethodName = "/plugin.v1.NarratorService/GetMetadata"
 	NarratorService_Narrate_FullMethodName     = "/plugin.v1.NarratorService/Narrate"
-	NarratorService_JobStatus_FullMethodName   = "/plugin.v1.NarratorService/JobStatus"
 )
 
 // NarratorServiceClient is the client API for NarratorService service.
@@ -30,7 +29,6 @@ const (
 type NarratorServiceClient interface {
 	GetMetadata(ctx context.Context, in *GetMetadataRequest, opts ...grpc.CallOption) (*GetMetadataResponse, error)
 	Narrate(ctx context.Context, in *NarrateRequest, opts ...grpc.CallOption) (*NarrateResponse, error)
-	JobStatus(ctx context.Context, in *JobStatusRequest, opts ...grpc.CallOption) (*JobStatusResponse, error)
 }
 
 type narratorServiceClient struct {
@@ -61,23 +59,12 @@ func (c *narratorServiceClient) Narrate(ctx context.Context, in *NarrateRequest,
 	return out, nil
 }
 
-func (c *narratorServiceClient) JobStatus(ctx context.Context, in *JobStatusRequest, opts ...grpc.CallOption) (*JobStatusResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(JobStatusResponse)
-	err := c.cc.Invoke(ctx, NarratorService_JobStatus_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // NarratorServiceServer is the server API for NarratorService service.
 // All implementations must embed UnimplementedNarratorServiceServer
 // for forward compatibility.
 type NarratorServiceServer interface {
 	GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error)
 	Narrate(context.Context, *NarrateRequest) (*NarrateResponse, error)
-	JobStatus(context.Context, *JobStatusRequest) (*JobStatusResponse, error)
 	mustEmbedUnimplementedNarratorServiceServer()
 }
 
@@ -93,9 +80,6 @@ func (UnimplementedNarratorServiceServer) GetMetadata(context.Context, *GetMetad
 }
 func (UnimplementedNarratorServiceServer) Narrate(context.Context, *NarrateRequest) (*NarrateResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Narrate not implemented")
-}
-func (UnimplementedNarratorServiceServer) JobStatus(context.Context, *JobStatusRequest) (*JobStatusResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method JobStatus not implemented")
 }
 func (UnimplementedNarratorServiceServer) mustEmbedUnimplementedNarratorServiceServer() {}
 func (UnimplementedNarratorServiceServer) testEmbeddedByValue()                         {}
@@ -154,24 +138,6 @@ func _NarratorService_Narrate_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NarratorService_JobStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(JobStatusRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NarratorServiceServer).JobStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NarratorService_JobStatus_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NarratorServiceServer).JobStatus(ctx, req.(*JobStatusRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // NarratorService_ServiceDesc is the grpc.ServiceDesc for NarratorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -186,10 +152,6 @@ var NarratorService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Narrate",
 			Handler:    _NarratorService_Narrate_Handler,
-		},
-		{
-			MethodName: "JobStatus",
-			Handler:    _NarratorService_JobStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
