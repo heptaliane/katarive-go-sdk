@@ -9,7 +9,7 @@ import (
 )
 
 type Source interface {
-	GetSupportedPatterns(ctx context.Context) (*pb.GetSupportedPatternsResponse, error)
+	GetSourceServiceMetadata(ctx context.Context) (*pb.GetSourceServiceMetadataResponse, error)
 	GetSource(ctx context.Context, url string) (*pb.GetSourceResponse, error)
 }
 
@@ -17,8 +17,10 @@ type sourceGRPCClient struct {
 	client pb.SourceServiceClient
 }
 
-func (c *sourceGRPCClient) GetSupportedPatterns(ctx context.Context) (*pb.GetSupportedPatternsResponse, error) {
-	return c.client.GetSupportedPatterns(ctx, &pb.GetSupportedPatternsRequest{})
+func (c *sourceGRPCClient) GetSourceServiceMetadata(
+	ctx context.Context,
+) (*pb.GetSourceServiceMetadataResponse, error) {
+	return c.client.GetSourceServiceMetadata(ctx, &pb.GetSourceServiceMetadataRequest{})
 }
 func (c *sourceGRPCClient) GetSource(ctx context.Context, url string) (*pb.GetSourceResponse, error) {
 	return c.client.GetSource(ctx, &pb.GetSourceRequest{Url: url})
@@ -32,10 +34,16 @@ type sourceGRPCServer struct {
 	Impl Source
 }
 
-func (s *sourceGRPCServer) GetSupportedPatterns(ctx context.Context, _req *pb.GetSupportedPatternsRequest) (*pb.GetSupportedPatternsResponse, error) {
-	return s.Impl.GetSupportedPatterns(ctx)
+func (s *sourceGRPCServer) GetSourceServiceMetadata(
+	ctx context.Context,
+	_req *pb.GetSourceServiceMetadataRequest,
+) (*pb.GetSourceServiceMetadataResponse, error) {
+	return s.Impl.GetSourceServiceMetadata(ctx)
 }
-func (s *sourceGRPCServer) GetSource(ctx context.Context, req *pb.GetSourceRequest) (*pb.GetSourceResponse, error) {
+func (s *sourceGRPCServer) GetSource(
+	ctx context.Context,
+	req *pb.GetSourceRequest,
+) (*pb.GetSourceResponse, error) {
 	return s.Impl.GetSource(ctx, req.Url)
 }
 
@@ -51,7 +59,11 @@ func (p *SourcePlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Server
 	pb.RegisterSourceServiceServer(server, &sourceGRPCServer{Impl: p.Impl})
 	return nil
 }
-func (p *SourcePlugin) GRPCClient(ctx context.Context, broker *plugin.GRPCBroker, conn *grpc.ClientConn) (interface{}, error) {
+func (p *SourcePlugin) GRPCClient(
+	ctx context.Context,
+	broker *plugin.GRPCBroker,
+	conn *grpc.ClientConn,
+) (interface{}, error) {
 	return &sourceGRPCClient{client: pb.NewSourceServiceClient(conn)}, nil
 }
 

@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	NarratorService_GetMetadata_FullMethodName = "/plugin.v1.NarratorService/GetMetadata"
-	NarratorService_Narrate_FullMethodName     = "/plugin.v1.NarratorService/Narrate"
+	NarratorService_Narrate_FullMethodName                    = "/plugin.v1.NarratorService/Narrate"
+	NarratorService_GetNarratorServiceMetadata_FullMethodName = "/plugin.v1.NarratorService/GetNarratorServiceMetadata"
 )
 
 // NarratorServiceClient is the client API for NarratorService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type NarratorServiceClient interface {
-	GetMetadata(ctx context.Context, in *GetMetadataRequest, opts ...grpc.CallOption) (*GetMetadataResponse, error)
 	Narrate(ctx context.Context, in *NarrateRequest, opts ...grpc.CallOption) (*NarrateResponse, error)
+	GetNarratorServiceMetadata(ctx context.Context, in *GetNarratorServiceMetadataRequest, opts ...grpc.CallOption) (*GetNarratorServiceMetadataResponse, error)
 }
 
 type narratorServiceClient struct {
@@ -37,16 +37,6 @@ type narratorServiceClient struct {
 
 func NewNarratorServiceClient(cc grpc.ClientConnInterface) NarratorServiceClient {
 	return &narratorServiceClient{cc}
-}
-
-func (c *narratorServiceClient) GetMetadata(ctx context.Context, in *GetMetadataRequest, opts ...grpc.CallOption) (*GetMetadataResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetMetadataResponse)
-	err := c.cc.Invoke(ctx, NarratorService_GetMetadata_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *narratorServiceClient) Narrate(ctx context.Context, in *NarrateRequest, opts ...grpc.CallOption) (*NarrateResponse, error) {
@@ -59,12 +49,22 @@ func (c *narratorServiceClient) Narrate(ctx context.Context, in *NarrateRequest,
 	return out, nil
 }
 
+func (c *narratorServiceClient) GetNarratorServiceMetadata(ctx context.Context, in *GetNarratorServiceMetadataRequest, opts ...grpc.CallOption) (*GetNarratorServiceMetadataResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetNarratorServiceMetadataResponse)
+	err := c.cc.Invoke(ctx, NarratorService_GetNarratorServiceMetadata_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NarratorServiceServer is the server API for NarratorService service.
 // All implementations must embed UnimplementedNarratorServiceServer
 // for forward compatibility.
 type NarratorServiceServer interface {
-	GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error)
 	Narrate(context.Context, *NarrateRequest) (*NarrateResponse, error)
+	GetNarratorServiceMetadata(context.Context, *GetNarratorServiceMetadataRequest) (*GetNarratorServiceMetadataResponse, error)
 	mustEmbedUnimplementedNarratorServiceServer()
 }
 
@@ -75,11 +75,11 @@ type NarratorServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedNarratorServiceServer struct{}
 
-func (UnimplementedNarratorServiceServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetMetadata not implemented")
-}
 func (UnimplementedNarratorServiceServer) Narrate(context.Context, *NarrateRequest) (*NarrateResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Narrate not implemented")
+}
+func (UnimplementedNarratorServiceServer) GetNarratorServiceMetadata(context.Context, *GetNarratorServiceMetadataRequest) (*GetNarratorServiceMetadataResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetNarratorServiceMetadata not implemented")
 }
 func (UnimplementedNarratorServiceServer) mustEmbedUnimplementedNarratorServiceServer() {}
 func (UnimplementedNarratorServiceServer) testEmbeddedByValue()                         {}
@@ -102,24 +102,6 @@ func RegisterNarratorServiceServer(s grpc.ServiceRegistrar, srv NarratorServiceS
 	s.RegisterService(&NarratorService_ServiceDesc, srv)
 }
 
-func _NarratorService_GetMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetMetadataRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(NarratorServiceServer).GetMetadata(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: NarratorService_GetMetadata_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(NarratorServiceServer).GetMetadata(ctx, req.(*GetMetadataRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _NarratorService_Narrate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(NarrateRequest)
 	if err := dec(in); err != nil {
@@ -138,6 +120,24 @@ func _NarratorService_Narrate_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NarratorService_GetNarratorServiceMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNarratorServiceMetadataRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NarratorServiceServer).GetNarratorServiceMetadata(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NarratorService_GetNarratorServiceMetadata_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NarratorServiceServer).GetNarratorServiceMetadata(ctx, req.(*GetNarratorServiceMetadataRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // NarratorService_ServiceDesc is the grpc.ServiceDesc for NarratorService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -146,12 +146,12 @@ var NarratorService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*NarratorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetMetadata",
-			Handler:    _NarratorService_GetMetadata_Handler,
-		},
-		{
 			MethodName: "Narrate",
 			Handler:    _NarratorService_Narrate_Handler,
+		},
+		{
+			MethodName: "GetNarratorServiceMetadata",
+			Handler:    _NarratorService_GetNarratorServiceMetadata_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

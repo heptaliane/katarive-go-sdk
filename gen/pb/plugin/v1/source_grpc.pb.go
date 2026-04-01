@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SourceService_GetSource_FullMethodName            = "/plugin.v1.SourceService/GetSource"
-	SourceService_GetSupportedPatterns_FullMethodName = "/plugin.v1.SourceService/GetSupportedPatterns"
+	SourceService_GetSource_FullMethodName                = "/plugin.v1.SourceService/GetSource"
+	SourceService_GetSourceServiceMetadata_FullMethodName = "/plugin.v1.SourceService/GetSourceServiceMetadata"
 )
 
 // SourceServiceClient is the client API for SourceService service.
@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SourceServiceClient interface {
 	GetSource(ctx context.Context, in *GetSourceRequest, opts ...grpc.CallOption) (*GetSourceResponse, error)
-	GetSupportedPatterns(ctx context.Context, in *GetSupportedPatternsRequest, opts ...grpc.CallOption) (*GetSupportedPatternsResponse, error)
+	GetSourceServiceMetadata(ctx context.Context, in *GetSourceServiceMetadataRequest, opts ...grpc.CallOption) (*GetSourceServiceMetadataResponse, error)
 }
 
 type sourceServiceClient struct {
@@ -49,10 +49,10 @@ func (c *sourceServiceClient) GetSource(ctx context.Context, in *GetSourceReques
 	return out, nil
 }
 
-func (c *sourceServiceClient) GetSupportedPatterns(ctx context.Context, in *GetSupportedPatternsRequest, opts ...grpc.CallOption) (*GetSupportedPatternsResponse, error) {
+func (c *sourceServiceClient) GetSourceServiceMetadata(ctx context.Context, in *GetSourceServiceMetadataRequest, opts ...grpc.CallOption) (*GetSourceServiceMetadataResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetSupportedPatternsResponse)
-	err := c.cc.Invoke(ctx, SourceService_GetSupportedPatterns_FullMethodName, in, out, cOpts...)
+	out := new(GetSourceServiceMetadataResponse)
+	err := c.cc.Invoke(ctx, SourceService_GetSourceServiceMetadata_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *sourceServiceClient) GetSupportedPatterns(ctx context.Context, in *GetS
 // for forward compatibility.
 type SourceServiceServer interface {
 	GetSource(context.Context, *GetSourceRequest) (*GetSourceResponse, error)
-	GetSupportedPatterns(context.Context, *GetSupportedPatternsRequest) (*GetSupportedPatternsResponse, error)
+	GetSourceServiceMetadata(context.Context, *GetSourceServiceMetadataRequest) (*GetSourceServiceMetadataResponse, error)
 	mustEmbedUnimplementedSourceServiceServer()
 }
 
@@ -78,8 +78,8 @@ type UnimplementedSourceServiceServer struct{}
 func (UnimplementedSourceServiceServer) GetSource(context.Context, *GetSourceRequest) (*GetSourceResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSource not implemented")
 }
-func (UnimplementedSourceServiceServer) GetSupportedPatterns(context.Context, *GetSupportedPatternsRequest) (*GetSupportedPatternsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetSupportedPatterns not implemented")
+func (UnimplementedSourceServiceServer) GetSourceServiceMetadata(context.Context, *GetSourceServiceMetadataRequest) (*GetSourceServiceMetadataResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSourceServiceMetadata not implemented")
 }
 func (UnimplementedSourceServiceServer) mustEmbedUnimplementedSourceServiceServer() {}
 func (UnimplementedSourceServiceServer) testEmbeddedByValue()                       {}
@@ -120,20 +120,20 @@ func _SourceService_GetSource_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SourceService_GetSupportedPatterns_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSupportedPatternsRequest)
+func _SourceService_GetSourceServiceMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSourceServiceMetadataRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SourceServiceServer).GetSupportedPatterns(ctx, in)
+		return srv.(SourceServiceServer).GetSourceServiceMetadata(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SourceService_GetSupportedPatterns_FullMethodName,
+		FullMethod: SourceService_GetSourceServiceMetadata_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SourceServiceServer).GetSupportedPatterns(ctx, req.(*GetSupportedPatternsRequest))
+		return srv.(SourceServiceServer).GetSourceServiceMetadata(ctx, req.(*GetSourceServiceMetadataRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -150,8 +150,8 @@ var SourceService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SourceService_GetSource_Handler,
 		},
 		{
-			MethodName: "GetSupportedPatterns",
-			Handler:    _SourceService_GetSupportedPatterns_Handler,
+			MethodName: "GetSourceServiceMetadata",
+			Handler:    _SourceService_GetSourceServiceMetadata_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

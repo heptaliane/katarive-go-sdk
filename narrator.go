@@ -9,18 +9,33 @@ import (
 )
 
 type Narrator interface {
-	GetMetadata(ctx context.Context) (*pb.GetMetadataResponse, error)
-	Narrate(ctx context.Context, path string, lines []string, options map[string]string) (*pb.NarrateResponse, error)
+	Narrate(
+		ctx context.Context,
+		path string,
+		lines []string,
+		options map[string]string,
+	) (*pb.NarrateResponse, error)
+
+	GetNarratorServiceMetadata(
+		ctx context.Context,
+	) (*pb.GetNarratorServiceMetadataResponse, error)
 }
 
 type narratorGRPCClient struct {
 	client pb.NarratorServiceClient
 }
 
-func (c *narratorGRPCClient) GetMetadata(ctx context.Context) (*pb.GetMetadataResponse, error) {
-	return c.client.GetMetadata(ctx, &pb.GetMetadataRequest{})
+func (c *narratorGRPCClient) GetNarratorServiceMetadata(
+	ctx context.Context,
+) (*pb.GetNarratorServiceMetadataResponse, error) {
+	return c.client.GetNarratorServiceMetadata(ctx, &pb.GetNarratorServiceMetadataRequest{})
 }
-func (c *narratorGRPCClient) Narrate(ctx context.Context, path string, lines []string, options map[string]string) (*pb.NarrateResponse, error) {
+func (c *narratorGRPCClient) Narrate(
+	ctx context.Context,
+	path string,
+	lines []string,
+	options map[string]string,
+) (*pb.NarrateResponse, error) {
 	return c.client.Narrate(ctx, &pb.NarrateRequest{
 		Path:    path,
 		Lines:   lines,
@@ -36,10 +51,16 @@ type narratorGRPCServer struct {
 	Impl Narrator
 }
 
-func (s *narratorGRPCServer) GetMetadata(ctx context.Context, _req *pb.GetMetadataRequest) (*pb.GetMetadataResponse, error) {
-	return s.Impl.GetMetadata(ctx)
+func (s *narratorGRPCServer) GetNarratorServiceMetadata(
+	ctx context.Context,
+	_req *pb.GetNarratorServiceMetadataRequest,
+) (*pb.GetNarratorServiceMetadataResponse, error) {
+	return s.Impl.GetNarratorServiceMetadata(ctx)
 }
-func (s *narratorGRPCServer) Narrate(ctx context.Context, req *pb.NarrateRequest) (*pb.NarrateResponse, error) {
+func (s *narratorGRPCServer) Narrate(
+	ctx context.Context,
+	req *pb.NarrateRequest,
+) (*pb.NarrateResponse, error) {
 	return s.Impl.Narrate(ctx, req.Path, req.Lines, req.Options)
 }
 
@@ -55,7 +76,11 @@ func (p *NarratorPlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Serv
 	pb.RegisterNarratorServiceServer(server, &narratorGRPCServer{Impl: p.Impl})
 	return nil
 }
-func (p *NarratorPlugin) GRPCClient(ctx context.Context, broker *plugin.GRPCBroker, conn *grpc.ClientConn) (interface{}, error) {
+func (p *NarratorPlugin) GRPCClient(
+	ctx context.Context,
+	broker *plugin.GRPCBroker,
+	conn *grpc.ClientConn,
+) (interface{}, error) {
 	return &narratorGRPCClient{client: pb.NewNarratorServiceClient(conn)}, nil
 }
 

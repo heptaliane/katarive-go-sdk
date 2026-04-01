@@ -21,214 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type NarrateResponse_Status int32
-
-const (
-	NarrateResponse_STATUS_UNSPECIFIED NarrateResponse_Status = 0
-	NarrateResponse_STATUS_PROGRESSING NarrateResponse_Status = 1
-	NarrateResponse_STATUS_SUCCESS     NarrateResponse_Status = 2
-	NarrateResponse_STATUS_FAILED      NarrateResponse_Status = 3
-)
-
-// Enum value maps for NarrateResponse_Status.
-var (
-	NarrateResponse_Status_name = map[int32]string{
-		0: "STATUS_UNSPECIFIED",
-		1: "STATUS_PROGRESSING",
-		2: "STATUS_SUCCESS",
-		3: "STATUS_FAILED",
-	}
-	NarrateResponse_Status_value = map[string]int32{
-		"STATUS_UNSPECIFIED": 0,
-		"STATUS_PROGRESSING": 1,
-		"STATUS_SUCCESS":     2,
-		"STATUS_FAILED":      3,
-	}
-)
-
-func (x NarrateResponse_Status) Enum() *NarrateResponse_Status {
-	p := new(NarrateResponse_Status)
-	*p = x
-	return p
-}
-
-func (x NarrateResponse_Status) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (NarrateResponse_Status) Descriptor() protoreflect.EnumDescriptor {
-	return file_plugin_v1_narrator_proto_enumTypes[0].Descriptor()
-}
-
-func (NarrateResponse_Status) Type() protoreflect.EnumType {
-	return &file_plugin_v1_narrator_proto_enumTypes[0]
-}
-
-func (x NarrateResponse_Status) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use NarrateResponse_Status.Descriptor instead.
-func (NarrateResponse_Status) EnumDescriptor() ([]byte, []int) {
-	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{4, 0}
-}
-
-type GetMetadataRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetMetadataRequest) Reset() {
-	*x = GetMetadataRequest{}
-	mi := &file_plugin_v1_narrator_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetMetadataRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetMetadataRequest) ProtoMessage() {}
-
-func (x *GetMetadataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_narrator_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetMetadataRequest.ProtoReflect.Descriptor instead.
-func (*GetMetadataRequest) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{0}
-}
-
-type GetMetadataResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Version       string                 `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
-	Options       []*NarratorOption      `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetMetadataResponse) Reset() {
-	*x = GetMetadataResponse{}
-	mi := &file_plugin_v1_narrator_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetMetadataResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetMetadataResponse) ProtoMessage() {}
-
-func (x *GetMetadataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_narrator_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetMetadataResponse.ProtoReflect.Descriptor instead.
-func (*GetMetadataResponse) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *GetMetadataResponse) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *GetMetadataResponse) GetVersion() string {
-	if x != nil {
-		return x.Version
-	}
-	return ""
-}
-
-func (x *GetMetadataResponse) GetOptions() []*NarratorOption {
-	if x != nil {
-		return x.Options
-	}
-	return nil
-}
-
-type NarratorOption struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
-	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *NarratorOption) Reset() {
-	*x = NarratorOption{}
-	mi := &file_plugin_v1_narrator_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *NarratorOption) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*NarratorOption) ProtoMessage() {}
-
-func (x *NarratorOption) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_narrator_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use NarratorOption.ProtoReflect.Descriptor instead.
-func (*NarratorOption) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *NarratorOption) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *NarratorOption) GetLabel() string {
-	if x != nil {
-		return x.Label
-	}
-	return ""
-}
-
-func (x *NarratorOption) GetDescription() string {
-	if x != nil {
-		return x.Description
-	}
-	return ""
-}
-
 type NarrateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
@@ -240,7 +32,7 @@ type NarrateRequest struct {
 
 func (x *NarrateRequest) Reset() {
 	*x = NarrateRequest{}
-	mi := &file_plugin_v1_narrator_proto_msgTypes[3]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -252,7 +44,7 @@ func (x *NarrateRequest) String() string {
 func (*NarrateRequest) ProtoMessage() {}
 
 func (x *NarrateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_narrator_proto_msgTypes[3]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -265,7 +57,7 @@ func (x *NarrateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NarrateRequest.ProtoReflect.Descriptor instead.
 func (*NarrateRequest) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{3}
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *NarrateRequest) GetPath() string {
@@ -291,14 +83,15 @@ func (x *NarrateRequest) GetOptions() map[string]string {
 
 type NarrateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        NarrateResponse_Status `protobuf:"varint,1,opt,name=status,proto3,enum=plugin.v1.NarrateResponse_Status" json:"status,omitempty"`
+	Error         bool                   `protobuf:"varint,1,opt,name=error,proto3" json:"error,omitempty"`
+	Reason        *string                `protobuf:"bytes,2,opt,name=reason,proto3,oneof" json:"reason,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *NarrateResponse) Reset() {
 	*x = NarrateResponse{}
-	mi := &file_plugin_v1_narrator_proto_msgTypes[4]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -310,7 +103,7 @@ func (x *NarrateResponse) String() string {
 func (*NarrateResponse) ProtoMessage() {}
 
 func (x *NarrateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_narrator_proto_msgTypes[4]
+	mi := &file_plugin_v1_narrator_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -323,47 +116,207 @@ func (x *NarrateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NarrateResponse.ProtoReflect.Descriptor instead.
 func (*NarrateResponse) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *NarrateResponse) GetError() bool {
+	if x != nil {
+		return x.Error
+	}
+	return false
+}
+
+func (x *NarrateResponse) GetReason() string {
+	if x != nil && x.Reason != nil {
+		return *x.Reason
+	}
+	return ""
+}
+
+type GetNarratorServiceMetadataRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetNarratorServiceMetadataRequest) Reset() {
+	*x = GetNarratorServiceMetadataRequest{}
+	mi := &file_plugin_v1_narrator_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetNarratorServiceMetadataRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNarratorServiceMetadataRequest) ProtoMessage() {}
+
+func (x *GetNarratorServiceMetadataRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_narrator_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNarratorServiceMetadataRequest.ProtoReflect.Descriptor instead.
+func (*GetNarratorServiceMetadataRequest) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{2}
+}
+
+type GetNarratorServiceMetadataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Version       string                 `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	Options       []*NarratorOption      `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetNarratorServiceMetadataResponse) Reset() {
+	*x = GetNarratorServiceMetadataResponse{}
+	mi := &file_plugin_v1_narrator_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetNarratorServiceMetadataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetNarratorServiceMetadataResponse) ProtoMessage() {}
+
+func (x *GetNarratorServiceMetadataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_narrator_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetNarratorServiceMetadataResponse.ProtoReflect.Descriptor instead.
+func (*GetNarratorServiceMetadataResponse) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetNarratorServiceMetadataResponse) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetNarratorServiceMetadataResponse) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+func (x *GetNarratorServiceMetadataResponse) GetOptions() []*NarratorOption {
+	if x != nil {
+		return x.Options
+	}
+	return nil
+}
+
+type NarratorOption struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *NarratorOption) Reset() {
+	*x = NarratorOption{}
+	mi := &file_plugin_v1_narrator_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *NarratorOption) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*NarratorOption) ProtoMessage() {}
+
+func (x *NarratorOption) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_narrator_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use NarratorOption.ProtoReflect.Descriptor instead.
+func (*NarratorOption) Descriptor() ([]byte, []int) {
 	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *NarrateResponse) GetStatus() NarrateResponse_Status {
+func (x *NarratorOption) GetId() string {
 	if x != nil {
-		return x.Status
+		return x.Id
 	}
-	return NarrateResponse_STATUS_UNSPECIFIED
+	return ""
+}
+
+func (x *NarratorOption) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *NarratorOption) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
 }
 
 var File_plugin_v1_narrator_proto protoreflect.FileDescriptor
 
 const file_plugin_v1_narrator_proto_rawDesc = "" +
 	"\n" +
-	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\"\x14\n" +
-	"\x12GetMetadataRequest\"x\n" +
-	"\x13GetMetadataResponse\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
-	"\aversion\x18\x02 \x01(\tR\aversion\x123\n" +
-	"\aoptions\x18\x03 \x03(\v2\x19.plugin.v1.NarratorOptionR\aoptions\"X\n" +
-	"\x0eNarratorOption\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05label\x18\x02 \x01(\tR\x05label\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription\"\xb8\x01\n" +
+	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\"\xb8\x01\n" +
 	"\x0eNarrateRequest\x12\x12\n" +
 	"\x04path\x18\x01 \x01(\tR\x04path\x12\x14\n" +
 	"\x05lines\x18\x02 \x03(\tR\x05lines\x12@\n" +
 	"\aoptions\x18\x03 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xad\x01\n" +
-	"\x0fNarrateResponse\x129\n" +
-	"\x06status\x18\x01 \x01(\x0e2!.plugin.v1.NarrateResponse.StatusR\x06status\"_\n" +
-	"\x06Status\x12\x16\n" +
-	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x16\n" +
-	"\x12STATUS_PROGRESSING\x10\x01\x12\x12\n" +
-	"\x0eSTATUS_SUCCESS\x10\x02\x12\x11\n" +
-	"\rSTATUS_FAILED\x10\x032\xa1\x01\n" +
-	"\x0fNarratorService\x12L\n" +
-	"\vGetMetadata\x12\x1d.plugin.v1.GetMetadataRequest\x1a\x1e.plugin.v1.GetMetadataResponse\x12@\n" +
-	"\aNarrate\x12\x19.plugin.v1.NarrateRequest\x1a\x1a.plugin.v1.NarrateResponseB\xa4\x01\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"O\n" +
+	"\x0fNarrateResponse\x12\x14\n" +
+	"\x05error\x18\x01 \x01(\bR\x05error\x12\x1b\n" +
+	"\x06reason\x18\x02 \x01(\tH\x00R\x06reason\x88\x01\x01B\t\n" +
+	"\a_reason\"#\n" +
+	"!GetNarratorServiceMetadataRequest\"\x87\x01\n" +
+	"\"GetNarratorServiceMetadataResponse\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
+	"\aversion\x18\x02 \x01(\tR\aversion\x123\n" +
+	"\aoptions\x18\x03 \x03(\v2\x19.plugin.v1.NarratorOptionR\aoptions\"X\n" +
+	"\x0eNarratorOption\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
+	"\x05label\x18\x02 \x01(\tR\x05label\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription2\xce\x01\n" +
+	"\x0fNarratorService\x12@\n" +
+	"\aNarrate\x12\x19.plugin.v1.NarrateRequest\x1a\x1a.plugin.v1.NarrateResponse\x12y\n" +
+	"\x1aGetNarratorServiceMetadata\x12,.plugin.v1.GetNarratorServiceMetadataRequest\x1a-.plugin.v1.GetNarratorServiceMetadataResponseB\xa4\x01\n" +
 	"\rcom.plugin.v1B\rNarratorProtoP\x01Z?github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1;pluginv1\xa2\x02\x03PXX\xaa\x02\tPlugin.V1\xca\x02\tPlugin\\V1\xe2\x02\x15Plugin\\V1\\GPBMetadata\xea\x02\n" +
 	"Plugin::V1b\x06proto3"
 
@@ -379,30 +332,27 @@ func file_plugin_v1_narrator_proto_rawDescGZIP() []byte {
 	return file_plugin_v1_narrator_proto_rawDescData
 }
 
-var file_plugin_v1_narrator_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_plugin_v1_narrator_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_plugin_v1_narrator_proto_goTypes = []any{
-	(NarrateResponse_Status)(0), // 0: plugin.v1.NarrateResponse.Status
-	(*GetMetadataRequest)(nil),  // 1: plugin.v1.GetMetadataRequest
-	(*GetMetadataResponse)(nil), // 2: plugin.v1.GetMetadataResponse
-	(*NarratorOption)(nil),      // 3: plugin.v1.NarratorOption
-	(*NarrateRequest)(nil),      // 4: plugin.v1.NarrateRequest
-	(*NarrateResponse)(nil),     // 5: plugin.v1.NarrateResponse
-	nil,                         // 6: plugin.v1.NarrateRequest.OptionsEntry
+	(*NarrateRequest)(nil),                     // 0: plugin.v1.NarrateRequest
+	(*NarrateResponse)(nil),                    // 1: plugin.v1.NarrateResponse
+	(*GetNarratorServiceMetadataRequest)(nil),  // 2: plugin.v1.GetNarratorServiceMetadataRequest
+	(*GetNarratorServiceMetadataResponse)(nil), // 3: plugin.v1.GetNarratorServiceMetadataResponse
+	(*NarratorOption)(nil),                     // 4: plugin.v1.NarratorOption
+	nil,                                        // 5: plugin.v1.NarrateRequest.OptionsEntry
 }
 var file_plugin_v1_narrator_proto_depIdxs = []int32{
-	3, // 0: plugin.v1.GetMetadataResponse.options:type_name -> plugin.v1.NarratorOption
-	6, // 1: plugin.v1.NarrateRequest.options:type_name -> plugin.v1.NarrateRequest.OptionsEntry
-	0, // 2: plugin.v1.NarrateResponse.status:type_name -> plugin.v1.NarrateResponse.Status
-	1, // 3: plugin.v1.NarratorService.GetMetadata:input_type -> plugin.v1.GetMetadataRequest
-	4, // 4: plugin.v1.NarratorService.Narrate:input_type -> plugin.v1.NarrateRequest
-	2, // 5: plugin.v1.NarratorService.GetMetadata:output_type -> plugin.v1.GetMetadataResponse
-	5, // 6: plugin.v1.NarratorService.Narrate:output_type -> plugin.v1.NarrateResponse
-	5, // [5:7] is the sub-list for method output_type
-	3, // [3:5] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	5, // 0: plugin.v1.NarrateRequest.options:type_name -> plugin.v1.NarrateRequest.OptionsEntry
+	4, // 1: plugin.v1.GetNarratorServiceMetadataResponse.options:type_name -> plugin.v1.NarratorOption
+	0, // 2: plugin.v1.NarratorService.Narrate:input_type -> plugin.v1.NarrateRequest
+	2, // 3: plugin.v1.NarratorService.GetNarratorServiceMetadata:input_type -> plugin.v1.GetNarratorServiceMetadataRequest
+	1, // 4: plugin.v1.NarratorService.Narrate:output_type -> plugin.v1.NarrateResponse
+	3, // 5: plugin.v1.NarratorService.GetNarratorServiceMetadata:output_type -> plugin.v1.GetNarratorServiceMetadataResponse
+	4, // [4:6] is the sub-list for method output_type
+	2, // [2:4] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_plugin_v1_narrator_proto_init() }
@@ -410,19 +360,19 @@ func file_plugin_v1_narrator_proto_init() {
 	if File_plugin_v1_narrator_proto != nil {
 		return
 	}
+	file_plugin_v1_narrator_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_plugin_v1_narrator_proto_rawDesc), len(file_plugin_v1_narrator_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_plugin_v1_narrator_proto_goTypes,
 		DependencyIndexes: file_plugin_v1_narrator_proto_depIdxs,
-		EnumInfos:         file_plugin_v1_narrator_proto_enumTypes,
 		MessageInfos:      file_plugin_v1_narrator_proto_msgTypes,
 	}.Build()
 	File_plugin_v1_narrator_proto = out.File

@@ -125,26 +125,26 @@ func (x *GetSourceResponse) GetNextUrl() string {
 	return ""
 }
 
-type GetSupportedPatternsRequest struct {
+type GetSourceServiceMetadataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetSupportedPatternsRequest) Reset() {
-	*x = GetSupportedPatternsRequest{}
+func (x *GetSourceServiceMetadataRequest) Reset() {
+	*x = GetSourceServiceMetadataRequest{}
 	mi := &file_plugin_v1_source_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetSupportedPatternsRequest) String() string {
+func (x *GetSourceServiceMetadataRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetSupportedPatternsRequest) ProtoMessage() {}
+func (*GetSourceServiceMetadataRequest) ProtoMessage() {}
 
-func (x *GetSupportedPatternsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetSourceServiceMetadataRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_plugin_v1_source_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -156,32 +156,34 @@ func (x *GetSupportedPatternsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetSupportedPatternsRequest.ProtoReflect.Descriptor instead.
-func (*GetSupportedPatternsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetSourceServiceMetadataRequest.ProtoReflect.Descriptor instead.
+func (*GetSourceServiceMetadataRequest) Descriptor() ([]byte, []int) {
 	return file_plugin_v1_source_proto_rawDescGZIP(), []int{2}
 }
 
-type GetSupportedPatternsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Patterns      []string               `protobuf:"bytes,1,rep,name=patterns,proto3" json:"patterns,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+type GetSourceServiceMetadataResponse struct {
+	state            protoimpl.MessageState `protogen:"open.v1"`
+	Name             string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Version          string                 `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
+	SupportedPattern string                 `protobuf:"bytes,3,opt,name=supported_pattern,json=supportedPattern,proto3" json:"supported_pattern,omitempty"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
-func (x *GetSupportedPatternsResponse) Reset() {
-	*x = GetSupportedPatternsResponse{}
+func (x *GetSourceServiceMetadataResponse) Reset() {
+	*x = GetSourceServiceMetadataResponse{}
 	mi := &file_plugin_v1_source_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetSupportedPatternsResponse) String() string {
+func (x *GetSourceServiceMetadataResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetSupportedPatternsResponse) ProtoMessage() {}
+func (*GetSourceServiceMetadataResponse) ProtoMessage() {}
 
-func (x *GetSupportedPatternsResponse) ProtoReflect() protoreflect.Message {
+func (x *GetSourceServiceMetadataResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_plugin_v1_source_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -193,16 +195,30 @@ func (x *GetSupportedPatternsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetSupportedPatternsResponse.ProtoReflect.Descriptor instead.
-func (*GetSupportedPatternsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetSourceServiceMetadataResponse.ProtoReflect.Descriptor instead.
+func (*GetSourceServiceMetadataResponse) Descriptor() ([]byte, []int) {
 	return file_plugin_v1_source_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetSupportedPatternsResponse) GetPatterns() []string {
+func (x *GetSourceServiceMetadataResponse) GetName() string {
 	if x != nil {
-		return x.Patterns
+		return x.Name
 	}
-	return nil
+	return ""
+}
+
+func (x *GetSourceServiceMetadataResponse) GetVersion() string {
+	if x != nil {
+		return x.Version
+	}
+	return ""
+}
+
+func (x *GetSourceServiceMetadataResponse) GetSupportedPattern() string {
+	if x != nil {
+		return x.SupportedPattern
+	}
+	return ""
 }
 
 var File_plugin_v1_source_proto protoreflect.FileDescriptor
@@ -215,13 +231,15 @@ const file_plugin_v1_source_proto_rawDesc = "" +
 	"\x11GetSourceResponse\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x19\n" +
-	"\bnext_url\x18\x03 \x01(\tR\anextUrl\"\x1d\n" +
-	"\x1bGetSupportedPatternsRequest\":\n" +
-	"\x1cGetSupportedPatternsResponse\x12\x1a\n" +
-	"\bpatterns\x18\x01 \x03(\tR\bpatterns2\xc0\x01\n" +
+	"\bnext_url\x18\x03 \x01(\tR\anextUrl\"!\n" +
+	"\x1fGetSourceServiceMetadataRequest\"}\n" +
+	" GetSourceServiceMetadataResponse\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
+	"\aversion\x18\x02 \x01(\tR\aversion\x12+\n" +
+	"\x11supported_pattern\x18\x03 \x01(\tR\x10supportedPattern2\xcc\x01\n" +
 	"\rSourceService\x12F\n" +
-	"\tGetSource\x12\x1b.plugin.v1.GetSourceRequest\x1a\x1c.plugin.v1.GetSourceResponse\x12g\n" +
-	"\x14GetSupportedPatterns\x12&.plugin.v1.GetSupportedPatternsRequest\x1a'.plugin.v1.GetSupportedPatternsResponseB\xa2\x01\n" +
+	"\tGetSource\x12\x1b.plugin.v1.GetSourceRequest\x1a\x1c.plugin.v1.GetSourceResponse\x12s\n" +
+	"\x18GetSourceServiceMetadata\x12*.plugin.v1.GetSourceServiceMetadataRequest\x1a+.plugin.v1.GetSourceServiceMetadataResponseB\xa2\x01\n" +
 	"\rcom.plugin.v1B\vSourceProtoP\x01Z?github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1;pluginv1\xa2\x02\x03PXX\xaa\x02\tPlugin.V1\xca\x02\tPlugin\\V1\xe2\x02\x15Plugin\\V1\\GPBMetadata\xea\x02\n" +
 	"Plugin::V1b\x06proto3"
 
@@ -239,16 +257,16 @@ func file_plugin_v1_source_proto_rawDescGZIP() []byte {
 
 var file_plugin_v1_source_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_plugin_v1_source_proto_goTypes = []any{
-	(*GetSourceRequest)(nil),             // 0: plugin.v1.GetSourceRequest
-	(*GetSourceResponse)(nil),            // 1: plugin.v1.GetSourceResponse
-	(*GetSupportedPatternsRequest)(nil),  // 2: plugin.v1.GetSupportedPatternsRequest
-	(*GetSupportedPatternsResponse)(nil), // 3: plugin.v1.GetSupportedPatternsResponse
+	(*GetSourceRequest)(nil),                 // 0: plugin.v1.GetSourceRequest
+	(*GetSourceResponse)(nil),                // 1: plugin.v1.GetSourceResponse
+	(*GetSourceServiceMetadataRequest)(nil),  // 2: plugin.v1.GetSourceServiceMetadataRequest
+	(*GetSourceServiceMetadataResponse)(nil), // 3: plugin.v1.GetSourceServiceMetadataResponse
 }
 var file_plugin_v1_source_proto_depIdxs = []int32{
 	0, // 0: plugin.v1.SourceService.GetSource:input_type -> plugin.v1.GetSourceRequest
-	2, // 1: plugin.v1.SourceService.GetSupportedPatterns:input_type -> plugin.v1.GetSupportedPatternsRequest
+	2, // 1: plugin.v1.SourceService.GetSourceServiceMetadata:input_type -> plugin.v1.GetSourceServiceMetadataRequest
 	1, // 2: plugin.v1.SourceService.GetSource:output_type -> plugin.v1.GetSourceResponse
-	3, // 3: plugin.v1.SourceService.GetSupportedPatterns:output_type -> plugin.v1.GetSupportedPatternsResponse
+	3, // 3: plugin.v1.SourceService.GetSourceServiceMetadata:output_type -> plugin.v1.GetSourceServiceMetadataResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
