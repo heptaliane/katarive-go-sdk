@@ -12,7 +12,7 @@ type Narrator interface {
 	Narrate(
 		ctx context.Context,
 		path string,
-		lines []string,
+		text string,
 		options map[string]string,
 	) (*pb.NarrateResponse, error)
 
@@ -33,12 +33,12 @@ func (c *narratorGRPCClient) GetNarratorServiceMetadata(
 func (c *narratorGRPCClient) Narrate(
 	ctx context.Context,
 	path string,
-	lines []string,
+	text string,
 	options map[string]string,
 ) (*pb.NarrateResponse, error) {
 	return c.client.Narrate(ctx, &pb.NarrateRequest{
 		Path:    path,
-		Lines:   lines,
+		Text:    text,
 		Options: options,
 	})
 }
@@ -61,7 +61,7 @@ func (s *narratorGRPCServer) Narrate(
 	ctx context.Context,
 	req *pb.NarrateRequest,
 ) (*pb.NarrateResponse, error) {
-	return s.Impl.Narrate(ctx, req.Path, req.Lines, req.Options)
+	return s.Impl.Narrate(ctx, req.Path, req.Text, req.Options)
 }
 
 // Check NarratorServiceServer implementation

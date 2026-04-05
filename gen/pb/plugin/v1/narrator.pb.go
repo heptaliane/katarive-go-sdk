@@ -24,7 +24,7 @@ const (
 type NarrateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
-	Lines         []string               `protobuf:"bytes,2,rep,name=lines,proto3" json:"lines,omitempty"`
+	Text          string                 `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
 	Options       map[string]string      `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -67,11 +67,11 @@ func (x *NarrateRequest) GetPath() string {
 	return ""
 }
 
-func (x *NarrateRequest) GetLines() []string {
+func (x *NarrateRequest) GetText() string {
 	if x != nil {
-		return x.Lines
+		return x.Text
 	}
-	return nil
+	return ""
 }
 
 func (x *NarrateRequest) GetOptions() map[string]string {
@@ -293,10 +293,10 @@ var File_plugin_v1_narrator_proto protoreflect.FileDescriptor
 
 const file_plugin_v1_narrator_proto_rawDesc = "" +
 	"\n" +
-	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\"\xb8\x01\n" +
+	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\"\xb6\x01\n" +
 	"\x0eNarrateRequest\x12\x12\n" +
-	"\x04path\x18\x01 \x01(\tR\x04path\x12\x14\n" +
-	"\x05lines\x18\x02 \x03(\tR\x05lines\x12@\n" +
+	"\x04path\x18\x01 \x01(\tR\x04path\x12\x12\n" +
+	"\x04text\x18\x02 \x01(\tR\x04text\x12@\n" +
 	"\aoptions\x18\x03 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
