@@ -25,7 +25,8 @@ type NarrateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Path          string                 `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
 	Text          string                 `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
-	Options       map[string]string      `protobuf:"bytes,3,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Language      Language               `protobuf:"varint,3,opt,name=language,proto3,enum=plugin.v1.Language" json:"language,omitempty"`
+	Options       map[string]string      `protobuf:"bytes,4,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -72,6 +73,13 @@ func (x *NarrateRequest) GetText() string {
 		return x.Text
 	}
 	return ""
+}
+
+func (x *NarrateRequest) GetLanguage() Language {
+	if x != nil {
+		return x.Language
+	}
+	return Language_LANGUAGE_UNSPECIFIED
 }
 
 func (x *NarrateRequest) GetOptions() map[string]string {
@@ -293,11 +301,12 @@ var File_plugin_v1_narrator_proto protoreflect.FileDescriptor
 
 const file_plugin_v1_narrator_proto_rawDesc = "" +
 	"\n" +
-	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\"\xb6\x01\n" +
+	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\x1a\x16plugin/v1/common.proto\"\xe7\x01\n" +
 	"\x0eNarrateRequest\x12\x12\n" +
 	"\x04path\x18\x01 \x01(\tR\x04path\x12\x12\n" +
-	"\x04text\x18\x02 \x01(\tR\x04text\x12@\n" +
-	"\aoptions\x18\x03 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
+	"\x04text\x18\x02 \x01(\tR\x04text\x12/\n" +
+	"\blanguage\x18\x03 \x01(\x0e2\x13.plugin.v1.LanguageR\blanguage\x12@\n" +
+	"\aoptions\x18\x04 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"O\n" +
@@ -340,19 +349,21 @@ var file_plugin_v1_narrator_proto_goTypes = []any{
 	(*GetNarratorServiceMetadataResponse)(nil), // 3: plugin.v1.GetNarratorServiceMetadataResponse
 	(*NarratorOption)(nil),                     // 4: plugin.v1.NarratorOption
 	nil,                                        // 5: plugin.v1.NarrateRequest.OptionsEntry
+	(Language)(0),                              // 6: plugin.v1.Language
 }
 var file_plugin_v1_narrator_proto_depIdxs = []int32{
-	5, // 0: plugin.v1.NarrateRequest.options:type_name -> plugin.v1.NarrateRequest.OptionsEntry
-	4, // 1: plugin.v1.GetNarratorServiceMetadataResponse.options:type_name -> plugin.v1.NarratorOption
-	0, // 2: plugin.v1.NarratorService.Narrate:input_type -> plugin.v1.NarrateRequest
-	2, // 3: plugin.v1.NarratorService.GetNarratorServiceMetadata:input_type -> plugin.v1.GetNarratorServiceMetadataRequest
-	1, // 4: plugin.v1.NarratorService.Narrate:output_type -> plugin.v1.NarrateResponse
-	3, // 5: plugin.v1.NarratorService.GetNarratorServiceMetadata:output_type -> plugin.v1.GetNarratorServiceMetadataResponse
-	4, // [4:6] is the sub-list for method output_type
-	2, // [2:4] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	6, // 0: plugin.v1.NarrateRequest.language:type_name -> plugin.v1.Language
+	5, // 1: plugin.v1.NarrateRequest.options:type_name -> plugin.v1.NarrateRequest.OptionsEntry
+	4, // 2: plugin.v1.GetNarratorServiceMetadataResponse.options:type_name -> plugin.v1.NarratorOption
+	0, // 3: plugin.v1.NarratorService.Narrate:input_type -> plugin.v1.NarrateRequest
+	2, // 4: plugin.v1.NarratorService.GetNarratorServiceMetadata:input_type -> plugin.v1.GetNarratorServiceMetadataRequest
+	1, // 5: plugin.v1.NarratorService.Narrate:output_type -> plugin.v1.NarrateResponse
+	3, // 6: plugin.v1.NarratorService.GetNarratorServiceMetadata:output_type -> plugin.v1.GetNarratorServiceMetadataResponse
+	5, // [5:7] is the sub-list for method output_type
+	3, // [3:5] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_plugin_v1_narrator_proto_init() }
@@ -360,6 +371,7 @@ func file_plugin_v1_narrator_proto_init() {
 	if File_plugin_v1_narrator_proto != nil {
 		return
 	}
+	file_plugin_v1_common_proto_init()
 	file_plugin_v1_narrator_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

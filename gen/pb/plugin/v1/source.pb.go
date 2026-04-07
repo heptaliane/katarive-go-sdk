@@ -69,7 +69,8 @@ type GetSourceResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
-	NextUrl       string                 `protobuf:"bytes,3,opt,name=next_url,json=nextUrl,proto3" json:"next_url,omitempty"`
+	Language      Language               `protobuf:"varint,3,opt,name=language,proto3,enum=plugin.v1.Language" json:"language,omitempty"`
+	NextUrl       string                 `protobuf:"bytes,4,opt,name=next_url,json=nextUrl,proto3" json:"next_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -116,6 +117,13 @@ func (x *GetSourceResponse) GetContent() string {
 		return x.Content
 	}
 	return ""
+}
+
+func (x *GetSourceResponse) GetLanguage() Language {
+	if x != nil {
+		return x.Language
+	}
+	return Language_LANGUAGE_UNSPECIFIED
 }
 
 func (x *GetSourceResponse) GetNextUrl() string {
@@ -225,13 +233,14 @@ var File_plugin_v1_source_proto protoreflect.FileDescriptor
 
 const file_plugin_v1_source_proto_rawDesc = "" +
 	"\n" +
-	"\x16plugin/v1/source.proto\x12\tplugin.v1\"$\n" +
+	"\x16plugin/v1/source.proto\x12\tplugin.v1\x1a\x16plugin/v1/common.proto\"$\n" +
 	"\x10GetSourceRequest\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"^\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"\x8f\x01\n" +
 	"\x11GetSourceResponse\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\tR\acontent\x12\x19\n" +
-	"\bnext_url\x18\x03 \x01(\tR\anextUrl\"!\n" +
+	"\acontent\x18\x02 \x01(\tR\acontent\x12/\n" +
+	"\blanguage\x18\x03 \x01(\x0e2\x13.plugin.v1.LanguageR\blanguage\x12\x19\n" +
+	"\bnext_url\x18\x04 \x01(\tR\anextUrl\"!\n" +
 	"\x1fGetSourceServiceMetadataRequest\"}\n" +
 	" GetSourceServiceMetadataResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
@@ -261,17 +270,19 @@ var file_plugin_v1_source_proto_goTypes = []any{
 	(*GetSourceResponse)(nil),                // 1: plugin.v1.GetSourceResponse
 	(*GetSourceServiceMetadataRequest)(nil),  // 2: plugin.v1.GetSourceServiceMetadataRequest
 	(*GetSourceServiceMetadataResponse)(nil), // 3: plugin.v1.GetSourceServiceMetadataResponse
+	(Language)(0),                            // 4: plugin.v1.Language
 }
 var file_plugin_v1_source_proto_depIdxs = []int32{
-	0, // 0: plugin.v1.SourceService.GetSource:input_type -> plugin.v1.GetSourceRequest
-	2, // 1: plugin.v1.SourceService.GetSourceServiceMetadata:input_type -> plugin.v1.GetSourceServiceMetadataRequest
-	1, // 2: plugin.v1.SourceService.GetSource:output_type -> plugin.v1.GetSourceResponse
-	3, // 3: plugin.v1.SourceService.GetSourceServiceMetadata:output_type -> plugin.v1.GetSourceServiceMetadataResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	4, // 0: plugin.v1.GetSourceResponse.language:type_name -> plugin.v1.Language
+	0, // 1: plugin.v1.SourceService.GetSource:input_type -> plugin.v1.GetSourceRequest
+	2, // 2: plugin.v1.SourceService.GetSourceServiceMetadata:input_type -> plugin.v1.GetSourceServiceMetadataRequest
+	1, // 3: plugin.v1.SourceService.GetSource:output_type -> plugin.v1.GetSourceResponse
+	3, // 4: plugin.v1.SourceService.GetSourceServiceMetadata:output_type -> plugin.v1.GetSourceServiceMetadataResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_plugin_v1_source_proto_init() }
@@ -279,6 +290,7 @@ func file_plugin_v1_source_proto_init() {
 	if File_plugin_v1_source_proto != nil {
 		return
 	}
+	file_plugin_v1_common_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
