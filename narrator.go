@@ -8,60 +8,43 @@ import (
 	"google.golang.org/grpc"
 )
 
-type Narrator interface {
-	Narrate(
-		ctx context.Context,
-		path string,
-		text string,
-		options map[string]string,
-	) (*pb.NarrateResponse, error)
-
-	GetNarratorServiceMetadata(
-		ctx context.Context,
-	) (*pb.GetNarratorServiceMetadataResponse, error)
-}
-
 type narratorGRPCClient struct {
+	pb.UnimplementedNarratorServiceServer
 	client pb.NarratorServiceClient
 }
 
 func (c *narratorGRPCClient) GetNarratorServiceMetadata(
 	ctx context.Context,
+	req *pb.GetNarratorServiceMetadataRequest,
 ) (*pb.GetNarratorServiceMetadataResponse, error) {
-	return c.client.GetNarratorServiceMetadata(ctx, &pb.GetNarratorServiceMetadataRequest{})
+	return c.client.GetNarratorServiceMetadata(ctx, req)
 }
 func (c *narratorGRPCClient) Narrate(
 	ctx context.Context,
-	path string,
-	text string,
-	options map[string]string,
+	req *pb.NarrateRequest,
 ) (*pb.NarrateResponse, error) {
-	return c.client.Narrate(ctx, &pb.NarrateRequest{
-		Path:    path,
-		Text:    text,
-		Options: options,
-	})
+	return c.client.Narrate(ctx, req)
 }
 
 // Check Narrator implementation
-var _ Narrator = new(narratorGRPCClient)
+var _ pb.NarratorServiceServer = new(narratorGRPCClient)
 
 type narratorGRPCServer struct {
 	pb.UnimplementedNarratorServiceServer
-	Impl Narrator
+	Impl pb.NarratorServiceServer
 }
 
 func (s *narratorGRPCServer) GetNarratorServiceMetadata(
 	ctx context.Context,
-	_req *pb.GetNarratorServiceMetadataRequest,
+	req *pb.GetNarratorServiceMetadataRequest,
 ) (*pb.GetNarratorServiceMetadataResponse, error) {
-	return s.Impl.GetNarratorServiceMetadata(ctx)
+	return s.Impl.GetNarratorServiceMetadata(ctx, req)
 }
 func (s *narratorGRPCServer) Narrate(
 	ctx context.Context,
 	req *pb.NarrateRequest,
 ) (*pb.NarrateResponse, error) {
-	return s.Impl.Narrate(ctx, req.Path, req.Text, req.Options)
+	return s.Impl.Narrate(ctx, req)
 }
 
 // Check NarratorServiceServer implementation
@@ -69,7 +52,7 @@ var _ pb.NarratorServiceServer = new(narratorGRPCServer)
 
 type NarratorPlugin struct {
 	plugin.NetRPCUnsupportedPlugin
-	Impl Narrator
+	Impl pb.NarratorServiceServer
 }
 
 func (p *NarratorPlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Server) error {

@@ -8,43 +8,43 @@ import (
 	"google.golang.org/grpc"
 )
 
-type Source interface {
-	GetSourceServiceMetadata(ctx context.Context) (*pb.GetSourceServiceMetadataResponse, error)
-	GetSource(ctx context.Context, url string) (*pb.GetSourceResponse, error)
-}
-
 type sourceGRPCClient struct {
+	pb.UnimplementedSourceServiceServer
 	client pb.SourceServiceClient
 }
 
 func (c *sourceGRPCClient) GetSourceServiceMetadata(
 	ctx context.Context,
+	req *pb.GetSourceServiceMetadataRequest,
 ) (*pb.GetSourceServiceMetadataResponse, error) {
-	return c.client.GetSourceServiceMetadata(ctx, &pb.GetSourceServiceMetadataRequest{})
+	return c.client.GetSourceServiceMetadata(ctx, req)
 }
-func (c *sourceGRPCClient) GetSource(ctx context.Context, url string) (*pb.GetSourceResponse, error) {
-	return c.client.GetSource(ctx, &pb.GetSourceRequest{Url: url})
+func (c *sourceGRPCClient) GetSource(
+	ctx context.Context,
+	req *pb.GetSourceRequest,
+) (*pb.GetSourceResponse, error) {
+	return c.client.GetSource(ctx, req)
 }
 
 // Check Source implementation
-var _ Source = new(sourceGRPCClient)
+var _ pb.SourceServiceServer = new(sourceGRPCClient)
 
 type sourceGRPCServer struct {
 	pb.UnimplementedSourceServiceServer
-	Impl Source
+	Impl pb.SourceServiceServer
 }
 
 func (s *sourceGRPCServer) GetSourceServiceMetadata(
 	ctx context.Context,
-	_req *pb.GetSourceServiceMetadataRequest,
+	req *pb.GetSourceServiceMetadataRequest,
 ) (*pb.GetSourceServiceMetadataResponse, error) {
-	return s.Impl.GetSourceServiceMetadata(ctx)
+	return s.Impl.GetSourceServiceMetadata(ctx, req)
 }
 func (s *sourceGRPCServer) GetSource(
 	ctx context.Context,
 	req *pb.GetSourceRequest,
 ) (*pb.GetSourceResponse, error) {
-	return s.Impl.GetSource(ctx, req.Url)
+	return s.Impl.GetSource(ctx, req)
 }
 
 // Check SourceServiceServer implementation
@@ -52,7 +52,7 @@ var _ pb.SourceServiceServer = new(sourceGRPCServer)
 
 type SourcePlugin struct {
 	plugin.NetRPCUnsupportedPlugin
-	Impl Source
+	Impl pb.SourceServiceServer
 }
 
 func (p *SourcePlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Server) error {
