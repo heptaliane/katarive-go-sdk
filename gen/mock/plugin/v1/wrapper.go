@@ -31,7 +31,7 @@ func (s *MockNarratorServiceServer) GetNarratorServiceMetadata(
 ) (*pb.GetNarratorServiceMetadataResponse, error) {
 	return s.MockNarratorServiceServer.GetNarratorServiceMetadata(ctx, req)
 }
-func NewMockNarratorServiceService(ctrl *gomock.Controller) *MockNarratorServiceServer {
+func NewMockNarratorServiceServer(ctrl *gomock.Controller) *MockNarratorServiceServer {
 	return &MockNarratorServiceServer{
 		MockNarratorServiceServer: mock.NewMockNarratorServiceServer(ctrl),
 	}
@@ -63,7 +63,7 @@ func (s *MockSourceServiceServer) GetSourceServiceMetadata(
 ) (*pb.GetSourceServiceMetadataResponse, error) {
 	return s.MockSourceServiceServer.GetSourceServiceMetadata(ctx, req)
 }
-func NewMockSourceServiceService(ctrl *gomock.Controller) *MockSourceServiceServer {
+func NewMockSourceServiceServer(ctrl *gomock.Controller) *MockSourceServiceServer {
 	return &MockSourceServiceServer{
 		MockSourceServiceServer: mock.NewMockSourceServiceServer(ctrl),
 	}
