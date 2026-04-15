@@ -9,6 +9,6 @@ var Handshake = plugin.HandshakeConfig{
 }
 
 var PluginMap = map[string]plugin.Plugin{
-	"source":  &SourcePlugin{},
-	"speaker": &NarratorPlugin{},
+	"source":   &SourcePlugin{},
+	"narrator": &NarratorPlugin{},
 }
