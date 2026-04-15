@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/go-plugin"
 	pb "github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 type sourceGRPCClient struct {
@@ -57,6 +58,7 @@ type SourcePlugin struct {
 
 func (p *SourcePlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Server) error {
 	pb.RegisterSourceServiceServer(server, &sourceGRPCServer{Impl: p.Impl})
+	reflection.Register(server)
 	return nil
 }
 func (p *SourcePlugin) GRPCClient(

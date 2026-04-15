@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/go-plugin"
 	pb "github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 type narratorGRPCClient struct {
@@ -57,6 +58,7 @@ type NarratorPlugin struct {
 
 func (p *NarratorPlugin) GRPCServer(broker *plugin.GRPCBroker, server *grpc.Server) error {
 	pb.RegisterNarratorServiceServer(server, &narratorGRPCServer{Impl: p.Impl})
+	reflection.Register(server)
 	return nil
 }
 func (p *NarratorPlugin) GRPCClient(
