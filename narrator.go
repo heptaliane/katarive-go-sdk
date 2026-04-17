@@ -9,25 +9,26 @@ import (
 )
 
 type narratorGRPCClient struct {
-	pb.UnimplementedNarratorServiceServer
 	client pb.NarratorServiceClient
 }
 
 func (c *narratorGRPCClient) GetNarratorServiceMetadata(
 	ctx context.Context,
 	req *pb.GetNarratorServiceMetadataRequest,
+	opt ...grpc.CallOption,
 ) (*pb.GetNarratorServiceMetadataResponse, error) {
 	return c.client.GetNarratorServiceMetadata(ctx, req)
 }
 func (c *narratorGRPCClient) Narrate(
 	ctx context.Context,
 	req *pb.NarrateRequest,
+	opt ...grpc.CallOption,
 ) (*pb.NarrateResponse, error) {
 	return c.client.Narrate(ctx, req)
 }
 
 // Check Narrator implementation
-var _ pb.NarratorServiceServer = new(narratorGRPCClient)
+var _ pb.NarratorServiceClient = new(narratorGRPCClient)
 
 type narratorGRPCServer struct {
 	pb.UnimplementedNarratorServiceServer

@@ -9,25 +9,26 @@ import (
 )
 
 type sourceGRPCClient struct {
-	pb.UnimplementedSourceServiceServer
 	client pb.SourceServiceClient
 }
 
 func (c *sourceGRPCClient) GetSourceServiceMetadata(
 	ctx context.Context,
 	req *pb.GetSourceServiceMetadataRequest,
+	opt ...grpc.CallOption,
 ) (*pb.GetSourceServiceMetadataResponse, error) {
 	return c.client.GetSourceServiceMetadata(ctx, req)
 }
 func (c *sourceGRPCClient) GetSource(
 	ctx context.Context,
 	req *pb.GetSourceRequest,
+	opt ...grpc.CallOption,
 ) (*pb.GetSourceResponse, error) {
 	return c.client.GetSource(ctx, req)
 }
 
 // Check Source implementation
-var _ pb.SourceServiceServer = new(sourceGRPCClient)
+var _ pb.SourceServiceClient = new(sourceGRPCClient)
 
 type sourceGRPCServer struct {
 	pb.UnimplementedSourceServiceServer
