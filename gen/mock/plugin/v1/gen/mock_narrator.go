@@ -13,7 +13,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	v1 "github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1"
+	pluginv1 "github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1"
 	gomock "go.uber.org/mock/gomock"
 	grpc "google.golang.org/grpc"
 )
@@ -43,14 +43,14 @@ func (m *MockNarratorServiceClient) EXPECT() *MockNarratorServiceClientMockRecor
 }
 
 // GetNarratorServiceMetadata mocks base method.
-func (m *MockNarratorServiceClient) GetNarratorServiceMetadata(ctx context.Context, in *v1.GetNarratorServiceMetadataRequest, opts ...grpc.CallOption) (*v1.GetNarratorServiceMetadataResponse, error) {
+func (m *MockNarratorServiceClient) GetNarratorServiceMetadata(ctx context.Context, in *pluginv1.GetNarratorServiceMetadataRequest, opts ...grpc.CallOption) (*pluginv1.GetNarratorServiceMetadataResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "GetNarratorServiceMetadata", varargs...)
-	ret0, _ := ret[0].(*v1.GetNarratorServiceMetadataResponse)
+	ret0, _ := ret[0].(*pluginv1.GetNarratorServiceMetadataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -63,14 +63,14 @@ func (mr *MockNarratorServiceClientMockRecorder) GetNarratorServiceMetadata(ctx,
 }
 
 // Narrate mocks base method.
-func (m *MockNarratorServiceClient) Narrate(ctx context.Context, in *v1.NarrateRequest, opts ...grpc.CallOption) (*v1.NarrateResponse, error) {
+func (m *MockNarratorServiceClient) Narrate(ctx context.Context, in *pluginv1.NarrateRequest, opts ...grpc.CallOption) (*pluginv1.NarrateResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "Narrate", varargs...)
-	ret0, _ := ret[0].(*v1.NarrateResponse)
+	ret0, _ := ret[0].(*pluginv1.NarrateResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -107,10 +107,10 @@ func (m *MockNarratorServiceServer) EXPECT() *MockNarratorServiceServerMockRecor
 }
 
 // GetNarratorServiceMetadata mocks base method.
-func (m *MockNarratorServiceServer) GetNarratorServiceMetadata(arg0 context.Context, arg1 *v1.GetNarratorServiceMetadataRequest) (*v1.GetNarratorServiceMetadataResponse, error) {
+func (m *MockNarratorServiceServer) GetNarratorServiceMetadata(arg0 context.Context, arg1 *pluginv1.GetNarratorServiceMetadataRequest) (*pluginv1.GetNarratorServiceMetadataResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetNarratorServiceMetadata", arg0, arg1)
-	ret0, _ := ret[0].(*v1.GetNarratorServiceMetadataResponse)
+	ret0, _ := ret[0].(*pluginv1.GetNarratorServiceMetadataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -122,10 +122,10 @@ func (mr *MockNarratorServiceServerMockRecorder) GetNarratorServiceMetadata(arg0
 }
 
 // Narrate mocks base method.
-func (m *MockNarratorServiceServer) Narrate(arg0 context.Context, arg1 *v1.NarrateRequest) (*v1.NarrateResponse, error) {
+func (m *MockNarratorServiceServer) Narrate(arg0 context.Context, arg1 *pluginv1.NarrateRequest) (*pluginv1.NarrateResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Narrate", arg0, arg1)
-	ret0, _ := ret[0].(*v1.NarrateResponse)
+	ret0, _ := ret[0].(*pluginv1.NarrateResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

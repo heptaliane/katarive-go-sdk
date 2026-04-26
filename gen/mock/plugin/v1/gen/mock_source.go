@@ -13,7 +13,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	v1 "github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1"
+	pluginv1 "github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1"
 	gomock "go.uber.org/mock/gomock"
 	grpc "google.golang.org/grpc"
 )
@@ -43,14 +43,14 @@ func (m *MockSourceServiceClient) EXPECT() *MockSourceServiceClientMockRecorder 
 }
 
 // GetSource mocks base method.
-func (m *MockSourceServiceClient) GetSource(ctx context.Context, in *v1.GetSourceRequest, opts ...grpc.CallOption) (*v1.GetSourceResponse, error) {
+func (m *MockSourceServiceClient) GetSource(ctx context.Context, in *pluginv1.GetSourceRequest, opts ...grpc.CallOption) (*pluginv1.GetSourceResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "GetSource", varargs...)
-	ret0, _ := ret[0].(*v1.GetSourceResponse)
+	ret0, _ := ret[0].(*pluginv1.GetSourceResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -63,14 +63,14 @@ func (mr *MockSourceServiceClientMockRecorder) GetSource(ctx, in any, opts ...an
 }
 
 // GetSourceServiceMetadata mocks base method.
-func (m *MockSourceServiceClient) GetSourceServiceMetadata(ctx context.Context, in *v1.GetSourceServiceMetadataRequest, opts ...grpc.CallOption) (*v1.GetSourceServiceMetadataResponse, error) {
+func (m *MockSourceServiceClient) GetSourceServiceMetadata(ctx context.Context, in *pluginv1.GetSourceServiceMetadataRequest, opts ...grpc.CallOption) (*pluginv1.GetSourceServiceMetadataResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "GetSourceServiceMetadata", varargs...)
-	ret0, _ := ret[0].(*v1.GetSourceServiceMetadataResponse)
+	ret0, _ := ret[0].(*pluginv1.GetSourceServiceMetadataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -107,10 +107,10 @@ func (m *MockSourceServiceServer) EXPECT() *MockSourceServiceServerMockRecorder 
 }
 
 // GetSource mocks base method.
-func (m *MockSourceServiceServer) GetSource(arg0 context.Context, arg1 *v1.GetSourceRequest) (*v1.GetSourceResponse, error) {
+func (m *MockSourceServiceServer) GetSource(arg0 context.Context, arg1 *pluginv1.GetSourceRequest) (*pluginv1.GetSourceResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetSource", arg0, arg1)
-	ret0, _ := ret[0].(*v1.GetSourceResponse)
+	ret0, _ := ret[0].(*pluginv1.GetSourceResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -122,10 +122,10 @@ func (mr *MockSourceServiceServerMockRecorder) GetSource(arg0, arg1 any) *gomock
 }
 
 // GetSourceServiceMetadata mocks base method.
-func (m *MockSourceServiceServer) GetSourceServiceMetadata(arg0 context.Context, arg1 *v1.GetSourceServiceMetadataRequest) (*v1.GetSourceServiceMetadataResponse, error) {
+func (m *MockSourceServiceServer) GetSourceServiceMetadata(arg0 context.Context, arg1 *pluginv1.GetSourceServiceMetadataRequest) (*pluginv1.GetSourceServiceMetadataResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetSourceServiceMetadata", arg0, arg1)
-	ret0, _ := ret[0].(*v1.GetSourceServiceMetadataResponse)
+	ret0, _ := ret[0].(*pluginv1.GetSourceServiceMetadataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
