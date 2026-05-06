@@ -79,7 +79,8 @@ type NarrateRequest struct {
 	Text          string                 `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
 	Language      Language               `protobuf:"varint,3,opt,name=language,proto3,enum=plugin.v1.Language" json:"language,omitempty"`
 	Encoding      AudioEncoding          `protobuf:"varint,4,opt,name=encoding,proto3,enum=plugin.v1.AudioEncoding" json:"encoding,omitempty"`
-	Options       map[string]string      `protobuf:"bytes,5,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	SpeakerId     int32                  `protobuf:"varint,5,opt,name=speaker_id,json=speakerId,proto3" json:"speaker_id,omitempty"`
+	Options       map[string]string      `protobuf:"bytes,6,rep,name=options,proto3" json:"options,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -140,6 +141,13 @@ func (x *NarrateRequest) GetEncoding() AudioEncoding {
 		return x.Encoding
 	}
 	return AudioEncoding_AUDIO_ENCODING_UNSPECIFIED
+}
+
+func (x *NarrateRequest) GetSpeakerId() int32 {
+	if x != nil {
+		return x.SpeakerId
+	}
+	return 0
 }
 
 func (x *NarrateRequest) GetOptions() map[string]string {
@@ -429,13 +437,15 @@ var File_plugin_v1_narrator_proto protoreflect.FileDescriptor
 
 const file_plugin_v1_narrator_proto_rawDesc = "" +
 	"\n" +
-	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\x1a\x16plugin/v1/common.proto\"\x9d\x02\n" +
+	"\x18plugin/v1/narrator.proto\x12\tplugin.v1\x1a\x16plugin/v1/common.proto\"\xbc\x02\n" +
 	"\x0eNarrateRequest\x12\x12\n" +
 	"\x04path\x18\x01 \x01(\tR\x04path\x12\x12\n" +
 	"\x04text\x18\x02 \x01(\tR\x04text\x12/\n" +
 	"\blanguage\x18\x03 \x01(\x0e2\x13.plugin.v1.LanguageR\blanguage\x124\n" +
-	"\bencoding\x18\x04 \x01(\x0e2\x18.plugin.v1.AudioEncodingR\bencoding\x12@\n" +
-	"\aoptions\x18\x05 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
+	"\bencoding\x18\x04 \x01(\x0e2\x18.plugin.v1.AudioEncodingR\bencoding\x12\x1d\n" +
+	"\n" +
+	"speaker_id\x18\x05 \x01(\x05R\tspeakerId\x12@\n" +
+	"\aoptions\x18\x06 \x03(\v2&.plugin.v1.NarrateRequest.OptionsEntryR\aoptions\x1a:\n" +
 	"\fOptionsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"O\n" +
