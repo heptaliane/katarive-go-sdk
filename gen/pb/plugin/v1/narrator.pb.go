@@ -242,7 +242,8 @@ type GetNarratorServiceMetadataResponse struct {
 	Name              string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Version           string                 `protobuf:"bytes,2,opt,name=version,proto3" json:"version,omitempty"`
 	SupportedEncoding []AudioEncoding        `protobuf:"varint,3,rep,packed,name=supported_encoding,json=supportedEncoding,proto3,enum=plugin.v1.AudioEncoding" json:"supported_encoding,omitempty"`
-	Options           []*NarratorOption      `protobuf:"bytes,4,rep,name=options,proto3" json:"options,omitempty"`
+	Speakers          []*SpeakerInfo         `protobuf:"bytes,4,rep,name=speakers,proto3" json:"speakers,omitempty"`
+	Options           []*NarratorOption      `protobuf:"bytes,5,rep,name=options,proto3" json:"options,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -294,6 +295,13 @@ func (x *GetNarratorServiceMetadataResponse) GetVersion() string {
 func (x *GetNarratorServiceMetadataResponse) GetSupportedEncoding() []AudioEncoding {
 	if x != nil {
 		return x.SupportedEncoding
+	}
+	return nil
+}
+
+func (x *GetNarratorServiceMetadataResponse) GetSpeakers() []*SpeakerInfo {
+	if x != nil {
+		return x.Speakers
 	}
 	return nil
 }
@@ -365,6 +373,58 @@ func (x *NarratorOption) GetDescription() string {
 	return ""
 }
 
+type SpeakerInfo struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SpeakerInfo) Reset() {
+	*x = SpeakerInfo{}
+	mi := &file_plugin_v1_narrator_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SpeakerInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SpeakerInfo) ProtoMessage() {}
+
+func (x *SpeakerInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_narrator_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SpeakerInfo.ProtoReflect.Descriptor instead.
+func (*SpeakerInfo) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_narrator_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *SpeakerInfo) GetId() int32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SpeakerInfo) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
 var File_plugin_v1_narrator_proto protoreflect.FileDescriptor
 
 const file_plugin_v1_narrator_proto_rawDesc = "" +
@@ -383,16 +443,20 @@ const file_plugin_v1_narrator_proto_rawDesc = "" +
 	"\x05error\x18\x01 \x01(\bR\x05error\x12\x1b\n" +
 	"\x06reason\x18\x02 \x01(\tH\x00R\x06reason\x88\x01\x01B\t\n" +
 	"\a_reason\"#\n" +
-	"!GetNarratorServiceMetadataRequest\"\xd0\x01\n" +
+	"!GetNarratorServiceMetadataRequest\"\x84\x02\n" +
 	"\"GetNarratorServiceMetadataResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
 	"\aversion\x18\x02 \x01(\tR\aversion\x12G\n" +
-	"\x12supported_encoding\x18\x03 \x03(\x0e2\x18.plugin.v1.AudioEncodingR\x11supportedEncoding\x123\n" +
-	"\aoptions\x18\x04 \x03(\v2\x19.plugin.v1.NarratorOptionR\aoptions\"X\n" +
+	"\x12supported_encoding\x18\x03 \x03(\x0e2\x18.plugin.v1.AudioEncodingR\x11supportedEncoding\x122\n" +
+	"\bspeakers\x18\x04 \x03(\v2\x16.plugin.v1.SpeakerInfoR\bspeakers\x123\n" +
+	"\aoptions\x18\x05 \x03(\v2\x19.plugin.v1.NarratorOptionR\aoptions\"X\n" +
 	"\x0eNarratorOption\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05label\x18\x02 \x01(\tR\x05label\x12 \n" +
-	"\vdescription\x18\x03 \x01(\tR\vdescription*w\n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\"1\n" +
+	"\vSpeakerInfo\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name*w\n" +
 	"\rAudioEncoding\x12\x1e\n" +
 	"\x1aAUDIO_ENCODING_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12AUDIO_ENCODING_WAV\x10\x01\x12\x16\n" +
@@ -417,7 +481,7 @@ func file_plugin_v1_narrator_proto_rawDescGZIP() []byte {
 }
 
 var file_plugin_v1_narrator_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_plugin_v1_narrator_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_plugin_v1_narrator_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_plugin_v1_narrator_proto_goTypes = []any{
 	(AudioEncoding)(0),                         // 0: plugin.v1.AudioEncoding
 	(*NarrateRequest)(nil),                     // 1: plugin.v1.NarrateRequest
@@ -425,24 +489,26 @@ var file_plugin_v1_narrator_proto_goTypes = []any{
 	(*GetNarratorServiceMetadataRequest)(nil),  // 3: plugin.v1.GetNarratorServiceMetadataRequest
 	(*GetNarratorServiceMetadataResponse)(nil), // 4: plugin.v1.GetNarratorServiceMetadataResponse
 	(*NarratorOption)(nil),                     // 5: plugin.v1.NarratorOption
-	nil,                                        // 6: plugin.v1.NarrateRequest.OptionsEntry
-	(Language)(0),                              // 7: plugin.v1.Language
+	(*SpeakerInfo)(nil),                        // 6: plugin.v1.SpeakerInfo
+	nil,                                        // 7: plugin.v1.NarrateRequest.OptionsEntry
+	(Language)(0),                              // 8: plugin.v1.Language
 }
 var file_plugin_v1_narrator_proto_depIdxs = []int32{
-	7, // 0: plugin.v1.NarrateRequest.language:type_name -> plugin.v1.Language
+	8, // 0: plugin.v1.NarrateRequest.language:type_name -> plugin.v1.Language
 	0, // 1: plugin.v1.NarrateRequest.encoding:type_name -> plugin.v1.AudioEncoding
-	6, // 2: plugin.v1.NarrateRequest.options:type_name -> plugin.v1.NarrateRequest.OptionsEntry
+	7, // 2: plugin.v1.NarrateRequest.options:type_name -> plugin.v1.NarrateRequest.OptionsEntry
 	0, // 3: plugin.v1.GetNarratorServiceMetadataResponse.supported_encoding:type_name -> plugin.v1.AudioEncoding
-	5, // 4: plugin.v1.GetNarratorServiceMetadataResponse.options:type_name -> plugin.v1.NarratorOption
-	1, // 5: plugin.v1.NarratorService.Narrate:input_type -> plugin.v1.NarrateRequest
-	3, // 6: plugin.v1.NarratorService.GetNarratorServiceMetadata:input_type -> plugin.v1.GetNarratorServiceMetadataRequest
-	2, // 7: plugin.v1.NarratorService.Narrate:output_type -> plugin.v1.NarrateResponse
-	4, // 8: plugin.v1.NarratorService.GetNarratorServiceMetadata:output_type -> plugin.v1.GetNarratorServiceMetadataResponse
-	7, // [7:9] is the sub-list for method output_type
-	5, // [5:7] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	6, // 4: plugin.v1.GetNarratorServiceMetadataResponse.speakers:type_name -> plugin.v1.SpeakerInfo
+	5, // 5: plugin.v1.GetNarratorServiceMetadataResponse.options:type_name -> plugin.v1.NarratorOption
+	1, // 6: plugin.v1.NarratorService.Narrate:input_type -> plugin.v1.NarrateRequest
+	3, // 7: plugin.v1.NarratorService.GetNarratorServiceMetadata:input_type -> plugin.v1.GetNarratorServiceMetadataRequest
+	2, // 8: plugin.v1.NarratorService.Narrate:output_type -> plugin.v1.NarrateResponse
+	4, // 9: plugin.v1.NarratorService.GetNarratorServiceMetadata:output_type -> plugin.v1.GetNarratorServiceMetadataResponse
+	8, // [8:10] is the sub-list for method output_type
+	6, // [6:8] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_plugin_v1_narrator_proto_init() }
@@ -458,7 +524,7 @@ func file_plugin_v1_narrator_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_plugin_v1_narrator_proto_rawDesc), len(file_plugin_v1_narrator_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
