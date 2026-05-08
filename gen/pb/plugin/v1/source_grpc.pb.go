@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	SourceService_GetSource_FullMethodName                = "/plugin.v1.SourceService/GetSource"
 	SourceService_GetSourceServiceMetadata_FullMethodName = "/plugin.v1.SourceService/GetSourceServiceMetadata"
+	SourceService_ListSources_FullMethodName              = "/plugin.v1.SourceService/ListSources"
 )
 
 // SourceServiceClient is the client API for SourceService service.
@@ -29,6 +30,7 @@ const (
 type SourceServiceClient interface {
 	GetSource(ctx context.Context, in *GetSourceRequest, opts ...grpc.CallOption) (*GetSourceResponse, error)
 	GetSourceServiceMetadata(ctx context.Context, in *GetSourceServiceMetadataRequest, opts ...grpc.CallOption) (*GetSourceServiceMetadataResponse, error)
+	ListSources(ctx context.Context, in *ListSourcesRequest, opts ...grpc.CallOption) (*ListSourcesResponse, error)
 }
 
 type sourceServiceClient struct {
@@ -59,12 +61,23 @@ func (c *sourceServiceClient) GetSourceServiceMetadata(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *sourceServiceClient) ListSources(ctx context.Context, in *ListSourcesRequest, opts ...grpc.CallOption) (*ListSourcesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSourcesResponse)
+	err := c.cc.Invoke(ctx, SourceService_ListSources_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SourceServiceServer is the server API for SourceService service.
 // All implementations must embed UnimplementedSourceServiceServer
 // for forward compatibility.
 type SourceServiceServer interface {
 	GetSource(context.Context, *GetSourceRequest) (*GetSourceResponse, error)
 	GetSourceServiceMetadata(context.Context, *GetSourceServiceMetadataRequest) (*GetSourceServiceMetadataResponse, error)
+	ListSources(context.Context, *ListSourcesRequest) (*ListSourcesResponse, error)
 	mustEmbedUnimplementedSourceServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedSourceServiceServer) GetSource(context.Context, *GetSourceReq
 }
 func (UnimplementedSourceServiceServer) GetSourceServiceMetadata(context.Context, *GetSourceServiceMetadataRequest) (*GetSourceServiceMetadataResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSourceServiceMetadata not implemented")
+}
+func (UnimplementedSourceServiceServer) ListSources(context.Context, *ListSourcesRequest) (*ListSourcesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListSources not implemented")
 }
 func (UnimplementedSourceServiceServer) mustEmbedUnimplementedSourceServiceServer() {}
 func (UnimplementedSourceServiceServer) testEmbeddedByValue()                       {}
@@ -138,6 +154,24 @@ func _SourceService_GetSourceServiceMetadata_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SourceService_ListSources_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSourcesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SourceServiceServer).ListSources(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SourceService_ListSources_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SourceServiceServer).ListSources(ctx, req.(*ListSourcesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SourceService_ServiceDesc is the grpc.ServiceDesc for SourceService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var SourceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSourceServiceMetadata",
 			Handler:    _SourceService_GetSourceServiceMetadata_Handler,
+		},
+		{
+			MethodName: "ListSources",
+			Handler:    _SourceService_ListSources_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

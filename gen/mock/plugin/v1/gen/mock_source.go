@@ -82,6 +82,26 @@ func (mr *MockSourceServiceClientMockRecorder) GetSourceServiceMetadata(ctx, in 
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSourceServiceMetadata", reflect.TypeOf((*MockSourceServiceClient)(nil).GetSourceServiceMetadata), varargs...)
 }
 
+// ListSources mocks base method.
+func (m *MockSourceServiceClient) ListSources(ctx context.Context, in *pluginv1.ListSourcesRequest, opts ...grpc.CallOption) (*pluginv1.ListSourcesResponse, error) {
+	m.ctrl.T.Helper()
+	varargs := []any{ctx, in}
+	for _, a := range opts {
+		varargs = append(varargs, a)
+	}
+	ret := m.ctrl.Call(m, "ListSources", varargs...)
+	ret0, _ := ret[0].(*pluginv1.ListSourcesResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListSources indicates an expected call of ListSources.
+func (mr *MockSourceServiceClientMockRecorder) ListSources(ctx, in any, opts ...any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	varargs := append([]any{ctx, in}, opts...)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListSources", reflect.TypeOf((*MockSourceServiceClient)(nil).ListSources), varargs...)
+}
+
 // MockSourceServiceServer is a mock of SourceServiceServer interface.
 type MockSourceServiceServer struct {
 	ctrl     *gomock.Controller
@@ -134,6 +154,21 @@ func (m *MockSourceServiceServer) GetSourceServiceMetadata(arg0 context.Context,
 func (mr *MockSourceServiceServerMockRecorder) GetSourceServiceMetadata(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetSourceServiceMetadata", reflect.TypeOf((*MockSourceServiceServer)(nil).GetSourceServiceMetadata), arg0, arg1)
+}
+
+// ListSources mocks base method.
+func (m *MockSourceServiceServer) ListSources(arg0 context.Context, arg1 *pluginv1.ListSourcesRequest) (*pluginv1.ListSourcesResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "ListSources", arg0, arg1)
+	ret0, _ := ret[0].(*pluginv1.ListSourcesResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// ListSources indicates an expected call of ListSources.
+func (mr *MockSourceServiceServerMockRecorder) ListSources(arg0, arg1 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListSources", reflect.TypeOf((*MockSourceServiceServer)(nil).ListSources), arg0, arg1)
 }
 
 // mustEmbedUnimplementedSourceServiceServer mocks base method.

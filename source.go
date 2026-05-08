@@ -26,6 +26,13 @@ func (c *sourceGRPCClient) GetSource(
 ) (*pb.GetSourceResponse, error) {
 	return c.client.GetSource(ctx, req)
 }
+func (c *sourceGRPCClient) ListSources(
+	ctx context.Context,
+	req *pb.ListSourcesRequest,
+	opt ...grpc.CallOption,
+) (*pb.ListSourcesResponse, error) {
+	return c.client.ListSources(ctx, req)
+}
 
 // Check Source implementation
 var _ pb.SourceServiceClient = new(sourceGRPCClient)
@@ -46,6 +53,12 @@ func (s *sourceGRPCServer) GetSource(
 	req *pb.GetSourceRequest,
 ) (*pb.GetSourceResponse, error) {
 	return s.Impl.GetSource(ctx, req)
+}
+func (s *sourceGRPCServer) ListSources(
+	ctx context.Context,
+	req *pb.ListSourcesRequest,
+) (*pb.ListSourcesResponse, error) {
+	return s.Impl.ListSources(ctx, req)
 }
 
 // Check SourceServiceServer implementation
