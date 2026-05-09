@@ -63,6 +63,12 @@ func (s *MockSourceServiceServer) GetSourceServiceMetadata(
 ) (*pb.GetSourceServiceMetadataResponse, error) {
 	return s.MockSourceServiceServer.GetSourceServiceMetadata(ctx, req)
 }
+func (s *MockSourceServiceServer) ListSources(
+	ctx context.Context,
+	req *pb.ListSourcesRequest,
+) (*pb.ListSourcesResponse, error) {
+	return s.MockSourceServiceServer.ListSources(ctx, req)
+}
 func NewMockSourceServiceServer(ctrl *gomock.Controller) *MockSourceServiceServer {
 	return &MockSourceServiceServer{
 		MockSourceServiceServer: mock.NewMockSourceServiceServer(ctrl),
