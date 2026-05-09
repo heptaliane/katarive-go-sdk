@@ -388,9 +388,8 @@ func (x *SourceItem) GetLanguage() Language {
 type SourceSummary struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CollectionId  *string                `protobuf:"bytes,2,opt,name=collection_id,json=collectionId,proto3,oneof" json:"collection_id,omitempty"`
-	Url           string                 `protobuf:"bytes,3,opt,name=url,proto3" json:"url,omitempty"`
-	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
+	Url           string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -428,13 +427,6 @@ func (*SourceSummary) Descriptor() ([]byte, []int) {
 func (x *SourceSummary) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return ""
-}
-
-func (x *SourceSummary) GetCollectionId() string {
-	if x != nil && x.CollectionId != nil {
-		return *x.CollectionId
 	}
 	return ""
 }
@@ -567,13 +559,11 @@ const file_plugin_v1_source_proto_rawDesc = "" +
 	"\x05title\x18\x04 \x01(\tR\x05title\x12\x18\n" +
 	"\acontent\x18\x05 \x01(\tR\acontent\x12/\n" +
 	"\blanguage\x18\x06 \x01(\x0e2\x13.plugin.v1.LanguageR\blanguageB\x10\n" +
-	"\x0e_collection_id\"\x83\x01\n" +
+	"\x0e_collection_id\"G\n" +
 	"\rSourceSummary\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12(\n" +
-	"\rcollection_id\x18\x02 \x01(\tH\x00R\fcollectionId\x88\x01\x01\x12\x10\n" +
-	"\x03url\x18\x03 \x01(\tR\x03url\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05titleB\x10\n" +
-	"\x0e_collection_id\"\x98\x01\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\"\x98\x01\n" +
 	"\x10SourceCollection\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03url\x18\x02 \x01(\tR\x03url\x12\x14\n" +
@@ -639,7 +629,6 @@ func file_plugin_v1_source_proto_init() {
 	file_plugin_v1_common_proto_init()
 	file_plugin_v1_source_proto_msgTypes[5].OneofWrappers = []any{}
 	file_plugin_v1_source_proto_msgTypes[6].OneofWrappers = []any{}
-	file_plugin_v1_source_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
