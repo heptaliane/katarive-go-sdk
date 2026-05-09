@@ -19,18 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SourceService_GetSource_FullMethodName                = "/plugin.v1.SourceService/GetSource"
 	SourceService_GetSourceServiceMetadata_FullMethodName = "/plugin.v1.SourceService/GetSourceServiceMetadata"
-	SourceService_ListSources_FullMethodName              = "/plugin.v1.SourceService/ListSources"
+	SourceService_GetSourceItem_FullMethodName            = "/plugin.v1.SourceService/GetSourceItem"
+	SourceService_GetSourceCollection_FullMethodName      = "/plugin.v1.SourceService/GetSourceCollection"
 )
 
 // SourceServiceClient is the client API for SourceService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SourceServiceClient interface {
-	GetSource(ctx context.Context, in *GetSourceRequest, opts ...grpc.CallOption) (*GetSourceResponse, error)
 	GetSourceServiceMetadata(ctx context.Context, in *GetSourceServiceMetadataRequest, opts ...grpc.CallOption) (*GetSourceServiceMetadataResponse, error)
-	ListSources(ctx context.Context, in *ListSourcesRequest, opts ...grpc.CallOption) (*ListSourcesResponse, error)
+	GetSourceItem(ctx context.Context, in *GetSourceItemRequest, opts ...grpc.CallOption) (*GetSourceItemResponse, error)
+	GetSourceCollection(ctx context.Context, in *GetSourceCollectionRequest, opts ...grpc.CallOption) (*GetSourceCollectionResponse, error)
 }
 
 type sourceServiceClient struct {
@@ -39,16 +39,6 @@ type sourceServiceClient struct {
 
 func NewSourceServiceClient(cc grpc.ClientConnInterface) SourceServiceClient {
 	return &sourceServiceClient{cc}
-}
-
-func (c *sourceServiceClient) GetSource(ctx context.Context, in *GetSourceRequest, opts ...grpc.CallOption) (*GetSourceResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetSourceResponse)
-	err := c.cc.Invoke(ctx, SourceService_GetSource_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *sourceServiceClient) GetSourceServiceMetadata(ctx context.Context, in *GetSourceServiceMetadataRequest, opts ...grpc.CallOption) (*GetSourceServiceMetadataResponse, error) {
@@ -61,10 +51,20 @@ func (c *sourceServiceClient) GetSourceServiceMetadata(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *sourceServiceClient) ListSources(ctx context.Context, in *ListSourcesRequest, opts ...grpc.CallOption) (*ListSourcesResponse, error) {
+func (c *sourceServiceClient) GetSourceItem(ctx context.Context, in *GetSourceItemRequest, opts ...grpc.CallOption) (*GetSourceItemResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListSourcesResponse)
-	err := c.cc.Invoke(ctx, SourceService_ListSources_FullMethodName, in, out, cOpts...)
+	out := new(GetSourceItemResponse)
+	err := c.cc.Invoke(ctx, SourceService_GetSourceItem_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *sourceServiceClient) GetSourceCollection(ctx context.Context, in *GetSourceCollectionRequest, opts ...grpc.CallOption) (*GetSourceCollectionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSourceCollectionResponse)
+	err := c.cc.Invoke(ctx, SourceService_GetSourceCollection_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -75,9 +75,9 @@ func (c *sourceServiceClient) ListSources(ctx context.Context, in *ListSourcesRe
 // All implementations must embed UnimplementedSourceServiceServer
 // for forward compatibility.
 type SourceServiceServer interface {
-	GetSource(context.Context, *GetSourceRequest) (*GetSourceResponse, error)
 	GetSourceServiceMetadata(context.Context, *GetSourceServiceMetadataRequest) (*GetSourceServiceMetadataResponse, error)
-	ListSources(context.Context, *ListSourcesRequest) (*ListSourcesResponse, error)
+	GetSourceItem(context.Context, *GetSourceItemRequest) (*GetSourceItemResponse, error)
+	GetSourceCollection(context.Context, *GetSourceCollectionRequest) (*GetSourceCollectionResponse, error)
 	mustEmbedUnimplementedSourceServiceServer()
 }
 
@@ -88,14 +88,14 @@ type SourceServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedSourceServiceServer struct{}
 
-func (UnimplementedSourceServiceServer) GetSource(context.Context, *GetSourceRequest) (*GetSourceResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetSource not implemented")
-}
 func (UnimplementedSourceServiceServer) GetSourceServiceMetadata(context.Context, *GetSourceServiceMetadataRequest) (*GetSourceServiceMetadataResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetSourceServiceMetadata not implemented")
 }
-func (UnimplementedSourceServiceServer) ListSources(context.Context, *ListSourcesRequest) (*ListSourcesResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListSources not implemented")
+func (UnimplementedSourceServiceServer) GetSourceItem(context.Context, *GetSourceItemRequest) (*GetSourceItemResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSourceItem not implemented")
+}
+func (UnimplementedSourceServiceServer) GetSourceCollection(context.Context, *GetSourceCollectionRequest) (*GetSourceCollectionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetSourceCollection not implemented")
 }
 func (UnimplementedSourceServiceServer) mustEmbedUnimplementedSourceServiceServer() {}
 func (UnimplementedSourceServiceServer) testEmbeddedByValue()                       {}
@@ -118,24 +118,6 @@ func RegisterSourceServiceServer(s grpc.ServiceRegistrar, srv SourceServiceServe
 	s.RegisterService(&SourceService_ServiceDesc, srv)
 }
 
-func _SourceService_GetSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSourceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SourceServiceServer).GetSource(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SourceService_GetSource_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SourceServiceServer).GetSource(ctx, req.(*GetSourceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _SourceService_GetSourceServiceMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetSourceServiceMetadataRequest)
 	if err := dec(in); err != nil {
@@ -154,20 +136,38 @@ func _SourceService_GetSourceServiceMetadata_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SourceService_ListSources_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSourcesRequest)
+func _SourceService_GetSourceItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSourceItemRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SourceServiceServer).ListSources(ctx, in)
+		return srv.(SourceServiceServer).GetSourceItem(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SourceService_ListSources_FullMethodName,
+		FullMethod: SourceService_GetSourceItem_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SourceServiceServer).ListSources(ctx, req.(*ListSourcesRequest))
+		return srv.(SourceServiceServer).GetSourceItem(ctx, req.(*GetSourceItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SourceService_GetSourceCollection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSourceCollectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SourceServiceServer).GetSourceCollection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SourceService_GetSourceCollection_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SourceServiceServer).GetSourceCollection(ctx, req.(*GetSourceCollectionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -180,16 +180,16 @@ var SourceService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*SourceServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetSource",
-			Handler:    _SourceService_GetSource_Handler,
-		},
-		{
 			MethodName: "GetSourceServiceMetadata",
 			Handler:    _SourceService_GetSourceServiceMetadata_Handler,
 		},
 		{
-			MethodName: "ListSources",
-			Handler:    _SourceService_ListSources_Handler,
+			MethodName: "GetSourceItem",
+			Handler:    _SourceService_GetSourceItem_Handler,
+		},
+		{
+			MethodName: "GetSourceCollection",
+			Handler:    _SourceService_GetSourceCollection_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -19,19 +19,19 @@ func (c *sourceGRPCClient) GetSourceServiceMetadata(
 ) (*pb.GetSourceServiceMetadataResponse, error) {
 	return c.client.GetSourceServiceMetadata(ctx, req)
 }
-func (c *sourceGRPCClient) GetSource(
+func (c *sourceGRPCClient) GetSourceItem(
 	ctx context.Context,
-	req *pb.GetSourceRequest,
+	req *pb.GetSourceItemRequest,
 	opt ...grpc.CallOption,
-) (*pb.GetSourceResponse, error) {
-	return c.client.GetSource(ctx, req)
+) (*pb.GetSourceItemResponse, error) {
+	return c.client.GetSourceItem(ctx, req)
 }
-func (c *sourceGRPCClient) ListSources(
+func (c *sourceGRPCClient) GetSourceCollection(
 	ctx context.Context,
-	req *pb.ListSourcesRequest,
+	req *pb.GetSourceCollectionRequest,
 	opt ...grpc.CallOption,
-) (*pb.ListSourcesResponse, error) {
-	return c.client.ListSources(ctx, req)
+) (*pb.GetSourceCollectionResponse, error) {
+	return c.client.GetSourceCollection(ctx, req)
 }
 
 // Check Source implementation
@@ -48,17 +48,17 @@ func (s *sourceGRPCServer) GetSourceServiceMetadata(
 ) (*pb.GetSourceServiceMetadataResponse, error) {
 	return s.Impl.GetSourceServiceMetadata(ctx, req)
 }
-func (s *sourceGRPCServer) GetSource(
+func (s *sourceGRPCServer) GetSourceItem(
 	ctx context.Context,
-	req *pb.GetSourceRequest,
-) (*pb.GetSourceResponse, error) {
-	return s.Impl.GetSource(ctx, req)
+	req *pb.GetSourceItemRequest,
+) (*pb.GetSourceItemResponse, error) {
+	return s.Impl.GetSourceItem(ctx, req)
 }
-func (s *sourceGRPCServer) ListSources(
+func (s *sourceGRPCServer) GetSourceCollection(
 	ctx context.Context,
-	req *pb.ListSourcesRequest,
-) (*pb.ListSourcesResponse, error) {
-	return s.Impl.ListSources(ctx, req)
+	req *pb.GetSourceCollectionRequest,
+) (*pb.GetSourceCollectionResponse, error) {
+	return s.Impl.GetSourceCollection(ctx, req)
 }
 
 // Check SourceServiceServer implementation

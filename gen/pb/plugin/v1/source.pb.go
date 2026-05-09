@@ -21,110 +21,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetSourceRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetSourceRequest) Reset() {
-	*x = GetSourceRequest{}
-	mi := &file_plugin_v1_source_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetSourceRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSourceRequest) ProtoMessage() {}
-
-func (x *GetSourceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_source_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSourceRequest.ProtoReflect.Descriptor instead.
-func (*GetSourceRequest) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_source_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *GetSourceRequest) GetUrl() string {
-	if x != nil {
-		return x.Url
-	}
-	return ""
-}
-
-type GetSourceResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
-	Language      Language               `protobuf:"varint,3,opt,name=language,proto3,enum=plugin.v1.Language" json:"language,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetSourceResponse) Reset() {
-	*x = GetSourceResponse{}
-	mi := &file_plugin_v1_source_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetSourceResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSourceResponse) ProtoMessage() {}
-
-func (x *GetSourceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_source_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSourceResponse.ProtoReflect.Descriptor instead.
-func (*GetSourceResponse) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_source_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *GetSourceResponse) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *GetSourceResponse) GetContent() string {
-	if x != nil {
-		return x.Content
-	}
-	return ""
-}
-
-func (x *GetSourceResponse) GetLanguage() Language {
-	if x != nil {
-		return x.Language
-	}
-	return Language_LANGUAGE_UNSPECIFIED
-}
-
 type GetSourceServiceMetadataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -133,7 +29,7 @@ type GetSourceServiceMetadataRequest struct {
 
 func (x *GetSourceServiceMetadataRequest) Reset() {
 	*x = GetSourceServiceMetadataRequest{}
-	mi := &file_plugin_v1_source_proto_msgTypes[2]
+	mi := &file_plugin_v1_source_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -145,7 +41,7 @@ func (x *GetSourceServiceMetadataRequest) String() string {
 func (*GetSourceServiceMetadataRequest) ProtoMessage() {}
 
 func (x *GetSourceServiceMetadataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_source_proto_msgTypes[2]
+	mi := &file_plugin_v1_source_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -158,7 +54,7 @@ func (x *GetSourceServiceMetadataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSourceServiceMetadataRequest.ProtoReflect.Descriptor instead.
 func (*GetSourceServiceMetadataRequest) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_source_proto_rawDescGZIP(), []int{2}
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{0}
 }
 
 type GetSourceServiceMetadataResponse struct {
@@ -172,7 +68,7 @@ type GetSourceServiceMetadataResponse struct {
 
 func (x *GetSourceServiceMetadataResponse) Reset() {
 	*x = GetSourceServiceMetadataResponse{}
-	mi := &file_plugin_v1_source_proto_msgTypes[3]
+	mi := &file_plugin_v1_source_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -184,7 +80,7 @@ func (x *GetSourceServiceMetadataResponse) String() string {
 func (*GetSourceServiceMetadataResponse) ProtoMessage() {}
 
 func (x *GetSourceServiceMetadataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_source_proto_msgTypes[3]
+	mi := &file_plugin_v1_source_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -197,7 +93,7 @@ func (x *GetSourceServiceMetadataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSourceServiceMetadataResponse.ProtoReflect.Descriptor instead.
 func (*GetSourceServiceMetadataResponse) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_source_proto_rawDescGZIP(), []int{3}
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetSourceServiceMetadataResponse) GetName() string {
@@ -221,28 +117,28 @@ func (x *GetSourceServiceMetadataResponse) GetSupportedPattern() string {
 	return ""
 }
 
-type ListSourcesRequest struct {
+type GetSourceItemRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListSourcesRequest) Reset() {
-	*x = ListSourcesRequest{}
-	mi := &file_plugin_v1_source_proto_msgTypes[4]
+func (x *GetSourceItemRequest) Reset() {
+	*x = GetSourceItemRequest{}
+	mi := &file_plugin_v1_source_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListSourcesRequest) String() string {
+func (x *GetSourceItemRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListSourcesRequest) ProtoMessage() {}
+func (*GetSourceItemRequest) ProtoMessage() {}
 
-func (x *ListSourcesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_plugin_v1_source_proto_msgTypes[4]
+func (x *GetSourceItemRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_source_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -253,40 +149,128 @@ func (x *ListSourcesRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListSourcesRequest.ProtoReflect.Descriptor instead.
-func (*ListSourcesRequest) Descriptor() ([]byte, []int) {
-	return file_plugin_v1_source_proto_rawDescGZIP(), []int{4}
+// Deprecated: Use GetSourceItemRequest.ProtoReflect.Descriptor instead.
+func (*GetSourceItemRequest) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ListSourcesRequest) GetUrl() string {
+func (x *GetSourceItemRequest) GetUrl() string {
 	if x != nil {
 		return x.Url
 	}
 	return ""
 }
 
-type ListSourcesResponse struct {
+type GetSourceItemResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Sources       []*SourceInfo          `protobuf:"bytes,2,rep,name=sources,proto3" json:"sources,omitempty"`
+	Item          *SourceItem            `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListSourcesResponse) Reset() {
-	*x = ListSourcesResponse{}
+func (x *GetSourceItemResponse) Reset() {
+	*x = GetSourceItemResponse{}
+	mi := &file_plugin_v1_source_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSourceItemResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSourceItemResponse) ProtoMessage() {}
+
+func (x *GetSourceItemResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_source_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSourceItemResponse.ProtoReflect.Descriptor instead.
+func (*GetSourceItemResponse) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetSourceItemResponse) GetItem() *SourceItem {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
+type GetSourceCollectionRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSourceCollectionRequest) Reset() {
+	*x = GetSourceCollectionRequest{}
+	mi := &file_plugin_v1_source_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSourceCollectionRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSourceCollectionRequest) ProtoMessage() {}
+
+func (x *GetSourceCollectionRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_source_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSourceCollectionRequest.ProtoReflect.Descriptor instead.
+func (*GetSourceCollectionRequest) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetSourceCollectionRequest) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+type GetSourceCollectionResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Collection    *SourceCollection      `protobuf:"bytes,1,opt,name=collection,proto3,oneof" json:"collection,omitempty"`
+	Sources       []*SourceSummary       `protobuf:"bytes,2,rep,name=sources,proto3" json:"sources,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSourceCollectionResponse) Reset() {
+	*x = GetSourceCollectionResponse{}
 	mi := &file_plugin_v1_source_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListSourcesResponse) String() string {
+func (x *GetSourceCollectionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListSourcesResponse) ProtoMessage() {}
+func (*GetSourceCollectionResponse) ProtoMessage() {}
 
-func (x *ListSourcesResponse) ProtoReflect() protoreflect.Message {
+func (x *GetSourceCollectionResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_plugin_v1_source_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -298,48 +282,51 @@ func (x *ListSourcesResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListSourcesResponse.ProtoReflect.Descriptor instead.
-func (*ListSourcesResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetSourceCollectionResponse.ProtoReflect.Descriptor instead.
+func (*GetSourceCollectionResponse) Descriptor() ([]byte, []int) {
 	return file_plugin_v1_source_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ListSourcesResponse) GetName() string {
+func (x *GetSourceCollectionResponse) GetCollection() *SourceCollection {
 	if x != nil {
-		return x.Name
+		return x.Collection
 	}
-	return ""
+	return nil
 }
 
-func (x *ListSourcesResponse) GetSources() []*SourceInfo {
+func (x *GetSourceCollectionResponse) GetSources() []*SourceSummary {
 	if x != nil {
 		return x.Sources
 	}
 	return nil
 }
 
-type SourceInfo struct {
+type SourceItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CollectionId  *string                `protobuf:"bytes,2,opt,name=collection_id,json=collectionId,proto3,oneof" json:"collection_id,omitempty"`
 	Url           string                 `protobuf:"bytes,3,opt,name=url,proto3" json:"url,omitempty"`
+	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
+	Content       string                 `protobuf:"bytes,5,opt,name=content,proto3" json:"content,omitempty"`
+	Language      Language               `protobuf:"varint,6,opt,name=language,proto3,enum=plugin.v1.Language" json:"language,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *SourceInfo) Reset() {
-	*x = SourceInfo{}
+func (x *SourceItem) Reset() {
+	*x = SourceItem{}
 	mi := &file_plugin_v1_source_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SourceInfo) String() string {
+func (x *SourceItem) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SourceInfo) ProtoMessage() {}
+func (*SourceItem) ProtoMessage() {}
 
-func (x *SourceInfo) ProtoReflect() protoreflect.Message {
+func (x *SourceItem) ProtoReflect() protoreflect.Message {
 	mi := &file_plugin_v1_source_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -351,62 +338,253 @@ func (x *SourceInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SourceInfo.ProtoReflect.Descriptor instead.
-func (*SourceInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use SourceItem.ProtoReflect.Descriptor instead.
+func (*SourceItem) Descriptor() ([]byte, []int) {
 	return file_plugin_v1_source_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *SourceInfo) GetId() int32 {
+func (x *SourceItem) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return 0
-}
-
-func (x *SourceInfo) GetTitle() string {
-	if x != nil {
-		return x.Title
 	}
 	return ""
 }
 
-func (x *SourceInfo) GetUrl() string {
+func (x *SourceItem) GetCollectionId() string {
+	if x != nil && x.CollectionId != nil {
+		return *x.CollectionId
+	}
+	return ""
+}
+
+func (x *SourceItem) GetUrl() string {
 	if x != nil {
 		return x.Url
 	}
 	return ""
 }
 
+func (x *SourceItem) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *SourceItem) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+func (x *SourceItem) GetLanguage() Language {
+	if x != nil {
+		return x.Language
+	}
+	return Language_LANGUAGE_UNSPECIFIED
+}
+
+type SourceSummary struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CollectionId  *string                `protobuf:"bytes,2,opt,name=collection_id,json=collectionId,proto3,oneof" json:"collection_id,omitempty"`
+	Url           string                 `protobuf:"bytes,3,opt,name=url,proto3" json:"url,omitempty"`
+	Title         string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SourceSummary) Reset() {
+	*x = SourceSummary{}
+	mi := &file_plugin_v1_source_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SourceSummary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SourceSummary) ProtoMessage() {}
+
+func (x *SourceSummary) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_source_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SourceSummary.ProtoReflect.Descriptor instead.
+func (*SourceSummary) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SourceSummary) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *SourceSummary) GetCollectionId() string {
+	if x != nil && x.CollectionId != nil {
+		return *x.CollectionId
+	}
+	return ""
+}
+
+func (x *SourceSummary) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *SourceSummary) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+type SourceCollection struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Url           string                 `protobuf:"bytes,2,opt,name=url,proto3" json:"url,omitempty"`
+	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	Author        string                 `protobuf:"bytes,5,opt,name=author,proto3" json:"author,omitempty"`
+	Tags          []string               `protobuf:"bytes,6,rep,name=tags,proto3" json:"tags,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SourceCollection) Reset() {
+	*x = SourceCollection{}
+	mi := &file_plugin_v1_source_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SourceCollection) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SourceCollection) ProtoMessage() {}
+
+func (x *SourceCollection) ProtoReflect() protoreflect.Message {
+	mi := &file_plugin_v1_source_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SourceCollection.ProtoReflect.Descriptor instead.
+func (*SourceCollection) Descriptor() ([]byte, []int) {
+	return file_plugin_v1_source_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *SourceCollection) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *SourceCollection) GetUrl() string {
+	if x != nil {
+		return x.Url
+	}
+	return ""
+}
+
+func (x *SourceCollection) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
+func (x *SourceCollection) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *SourceCollection) GetAuthor() string {
+	if x != nil {
+		return x.Author
+	}
+	return ""
+}
+
+func (x *SourceCollection) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
 var File_plugin_v1_source_proto protoreflect.FileDescriptor
 
 const file_plugin_v1_source_proto_rawDesc = "" +
 	"\n" +
-	"\x16plugin/v1/source.proto\x12\tplugin.v1\x1a\x16plugin/v1/common.proto\"$\n" +
-	"\x10GetSourceRequest\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"t\n" +
-	"\x11GetSourceResponse\x12\x14\n" +
-	"\x05title\x18\x01 \x01(\tR\x05title\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\tR\acontent\x12/\n" +
-	"\blanguage\x18\x03 \x01(\x0e2\x13.plugin.v1.LanguageR\blanguage\"!\n" +
+	"\x16plugin/v1/source.proto\x12\tplugin.v1\x1a\x16plugin/v1/common.proto\"!\n" +
 	"\x1fGetSourceServiceMetadataRequest\"}\n" +
 	" GetSourceServiceMetadataResponse\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
 	"\aversion\x18\x02 \x01(\tR\aversion\x12+\n" +
-	"\x11supported_pattern\x18\x03 \x01(\tR\x10supportedPattern\"&\n" +
-	"\x12ListSourcesRequest\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"Z\n" +
-	"\x13ListSourcesResponse\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12/\n" +
-	"\asources\x18\x02 \x03(\v2\x15.plugin.v1.SourceInfoR\asources\"D\n" +
+	"\x11supported_pattern\x18\x03 \x01(\tR\x10supportedPattern\"(\n" +
+	"\x14GetSourceItemRequest\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"B\n" +
+	"\x15GetSourceItemResponse\x12)\n" +
+	"\x04item\x18\x01 \x01(\v2\x15.plugin.v1.SourceItemR\x04item\".\n" +
+	"\x1aGetSourceCollectionRequest\x12\x10\n" +
+	"\x03url\x18\x01 \x01(\tR\x03url\"\xa2\x01\n" +
+	"\x1bGetSourceCollectionResponse\x12@\n" +
 	"\n" +
-	"SourceInfo\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x10\n" +
-	"\x03url\x18\x03 \x01(\tR\x03url2\x9a\x02\n" +
-	"\rSourceService\x12F\n" +
-	"\tGetSource\x12\x1b.plugin.v1.GetSourceRequest\x1a\x1c.plugin.v1.GetSourceResponse\x12s\n" +
-	"\x18GetSourceServiceMetadata\x12*.plugin.v1.GetSourceServiceMetadataRequest\x1a+.plugin.v1.GetSourceServiceMetadataResponse\x12L\n" +
-	"\vListSources\x12\x1d.plugin.v1.ListSourcesRequest\x1a\x1e.plugin.v1.ListSourcesResponseB\xa2\x01\n" +
+	"collection\x18\x01 \x01(\v2\x1b.plugin.v1.SourceCollectionH\x00R\n" +
+	"collection\x88\x01\x01\x122\n" +
+	"\asources\x18\x02 \x03(\v2\x18.plugin.v1.SourceSummaryR\asourcesB\r\n" +
+	"\v_collection\"\xcb\x01\n" +
+	"\n" +
+	"SourceItem\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12(\n" +
+	"\rcollection_id\x18\x02 \x01(\tH\x00R\fcollectionId\x88\x01\x01\x12\x10\n" +
+	"\x03url\x18\x03 \x01(\tR\x03url\x12\x14\n" +
+	"\x05title\x18\x04 \x01(\tR\x05title\x12\x18\n" +
+	"\acontent\x18\x05 \x01(\tR\acontent\x12/\n" +
+	"\blanguage\x18\x06 \x01(\x0e2\x13.plugin.v1.LanguageR\blanguageB\x10\n" +
+	"\x0e_collection_id\"\x83\x01\n" +
+	"\rSourceSummary\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12(\n" +
+	"\rcollection_id\x18\x02 \x01(\tH\x00R\fcollectionId\x88\x01\x01\x12\x10\n" +
+	"\x03url\x18\x03 \x01(\tR\x03url\x12\x14\n" +
+	"\x05title\x18\x04 \x01(\tR\x05titleB\x10\n" +
+	"\x0e_collection_id\"\x98\x01\n" +
+	"\x10SourceCollection\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
+	"\x03url\x18\x02 \x01(\tR\x03url\x12\x14\n" +
+	"\x05title\x18\x03 \x01(\tR\x05title\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x16\n" +
+	"\x06author\x18\x05 \x01(\tR\x06author\x12\x12\n" +
+	"\x04tags\x18\x06 \x03(\tR\x04tags2\xbe\x02\n" +
+	"\rSourceService\x12s\n" +
+	"\x18GetSourceServiceMetadata\x12*.plugin.v1.GetSourceServiceMetadataRequest\x1a+.plugin.v1.GetSourceServiceMetadataResponse\x12R\n" +
+	"\rGetSourceItem\x12\x1f.plugin.v1.GetSourceItemRequest\x1a .plugin.v1.GetSourceItemResponse\x12d\n" +
+	"\x13GetSourceCollection\x12%.plugin.v1.GetSourceCollectionRequest\x1a&.plugin.v1.GetSourceCollectionResponseB\xa2\x01\n" +
 	"\rcom.plugin.v1B\vSourceProtoP\x01Z?github.com/heptaliane/katarive-go-sdk/gen/pb/plugin/v1;pluginv1\xa2\x02\x03PXX\xaa\x02\tPlugin.V1\xca\x02\tPlugin\\V1\xe2\x02\x15Plugin\\V1\\GPBMetadata\xea\x02\n" +
 	"Plugin::V1b\x06proto3"
 
@@ -422,31 +600,35 @@ func file_plugin_v1_source_proto_rawDescGZIP() []byte {
 	return file_plugin_v1_source_proto_rawDescData
 }
 
-var file_plugin_v1_source_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_plugin_v1_source_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_plugin_v1_source_proto_goTypes = []any{
-	(*GetSourceRequest)(nil),                 // 0: plugin.v1.GetSourceRequest
-	(*GetSourceResponse)(nil),                // 1: plugin.v1.GetSourceResponse
-	(*GetSourceServiceMetadataRequest)(nil),  // 2: plugin.v1.GetSourceServiceMetadataRequest
-	(*GetSourceServiceMetadataResponse)(nil), // 3: plugin.v1.GetSourceServiceMetadataResponse
-	(*ListSourcesRequest)(nil),               // 4: plugin.v1.ListSourcesRequest
-	(*ListSourcesResponse)(nil),              // 5: plugin.v1.ListSourcesResponse
-	(*SourceInfo)(nil),                       // 6: plugin.v1.SourceInfo
-	(Language)(0),                            // 7: plugin.v1.Language
+	(*GetSourceServiceMetadataRequest)(nil),  // 0: plugin.v1.GetSourceServiceMetadataRequest
+	(*GetSourceServiceMetadataResponse)(nil), // 1: plugin.v1.GetSourceServiceMetadataResponse
+	(*GetSourceItemRequest)(nil),             // 2: plugin.v1.GetSourceItemRequest
+	(*GetSourceItemResponse)(nil),            // 3: plugin.v1.GetSourceItemResponse
+	(*GetSourceCollectionRequest)(nil),       // 4: plugin.v1.GetSourceCollectionRequest
+	(*GetSourceCollectionResponse)(nil),      // 5: plugin.v1.GetSourceCollectionResponse
+	(*SourceItem)(nil),                       // 6: plugin.v1.SourceItem
+	(*SourceSummary)(nil),                    // 7: plugin.v1.SourceSummary
+	(*SourceCollection)(nil),                 // 8: plugin.v1.SourceCollection
+	(Language)(0),                            // 9: plugin.v1.Language
 }
 var file_plugin_v1_source_proto_depIdxs = []int32{
-	7, // 0: plugin.v1.GetSourceResponse.language:type_name -> plugin.v1.Language
-	6, // 1: plugin.v1.ListSourcesResponse.sources:type_name -> plugin.v1.SourceInfo
-	0, // 2: plugin.v1.SourceService.GetSource:input_type -> plugin.v1.GetSourceRequest
-	2, // 3: plugin.v1.SourceService.GetSourceServiceMetadata:input_type -> plugin.v1.GetSourceServiceMetadataRequest
-	4, // 4: plugin.v1.SourceService.ListSources:input_type -> plugin.v1.ListSourcesRequest
-	1, // 5: plugin.v1.SourceService.GetSource:output_type -> plugin.v1.GetSourceResponse
-	3, // 6: plugin.v1.SourceService.GetSourceServiceMetadata:output_type -> plugin.v1.GetSourceServiceMetadataResponse
-	5, // 7: plugin.v1.SourceService.ListSources:output_type -> plugin.v1.ListSourcesResponse
-	5, // [5:8] is the sub-list for method output_type
-	2, // [2:5] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	6, // 0: plugin.v1.GetSourceItemResponse.item:type_name -> plugin.v1.SourceItem
+	8, // 1: plugin.v1.GetSourceCollectionResponse.collection:type_name -> plugin.v1.SourceCollection
+	7, // 2: plugin.v1.GetSourceCollectionResponse.sources:type_name -> plugin.v1.SourceSummary
+	9, // 3: plugin.v1.SourceItem.language:type_name -> plugin.v1.Language
+	0, // 4: plugin.v1.SourceService.GetSourceServiceMetadata:input_type -> plugin.v1.GetSourceServiceMetadataRequest
+	2, // 5: plugin.v1.SourceService.GetSourceItem:input_type -> plugin.v1.GetSourceItemRequest
+	4, // 6: plugin.v1.SourceService.GetSourceCollection:input_type -> plugin.v1.GetSourceCollectionRequest
+	1, // 7: plugin.v1.SourceService.GetSourceServiceMetadata:output_type -> plugin.v1.GetSourceServiceMetadataResponse
+	3, // 8: plugin.v1.SourceService.GetSourceItem:output_type -> plugin.v1.GetSourceItemResponse
+	5, // 9: plugin.v1.SourceService.GetSourceCollection:output_type -> plugin.v1.GetSourceCollectionResponse
+	7, // [7:10] is the sub-list for method output_type
+	4, // [4:7] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_plugin_v1_source_proto_init() }
@@ -455,13 +637,16 @@ func file_plugin_v1_source_proto_init() {
 		return
 	}
 	file_plugin_v1_common_proto_init()
+	file_plugin_v1_source_proto_msgTypes[5].OneofWrappers = []any{}
+	file_plugin_v1_source_proto_msgTypes[6].OneofWrappers = []any{}
+	file_plugin_v1_source_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_plugin_v1_source_proto_rawDesc), len(file_plugin_v1_source_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

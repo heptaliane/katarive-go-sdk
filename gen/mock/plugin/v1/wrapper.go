@@ -51,11 +51,11 @@ type MockSourceServiceServer struct {
 	pb.UnimplementedSourceServiceServer
 }
 
-func (s *MockSourceServiceServer) GetSource(
+func (s *MockSourceServiceServer) GetSourceItem(
 	ctx context.Context,
-	req *pb.GetSourceRequest,
-) (*pb.GetSourceResponse, error) {
-	return s.MockSourceServiceServer.GetSource(ctx, req)
+	req *pb.GetSourceItemRequest,
+) (*pb.GetSourceItemResponse, error) {
+	return s.MockSourceServiceServer.GetSourceItem(ctx, req)
 }
 func (s *MockSourceServiceServer) GetSourceServiceMetadata(
 	ctx context.Context,
@@ -63,11 +63,11 @@ func (s *MockSourceServiceServer) GetSourceServiceMetadata(
 ) (*pb.GetSourceServiceMetadataResponse, error) {
 	return s.MockSourceServiceServer.GetSourceServiceMetadata(ctx, req)
 }
-func (s *MockSourceServiceServer) ListSources(
+func (s *MockSourceServiceServer) GetSourceCollection(
 	ctx context.Context,
-	req *pb.ListSourcesRequest,
-) (*pb.ListSourcesResponse, error) {
-	return s.MockSourceServiceServer.ListSources(ctx, req)
+	req *pb.GetSourceCollectionRequest,
+) (*pb.GetSourceCollectionResponse, error) {
+	return s.MockSourceServiceServer.GetSourceCollection(ctx, req)
 }
 func NewMockSourceServiceServer(ctrl *gomock.Controller) *MockSourceServiceServer {
 	return &MockSourceServiceServer{
